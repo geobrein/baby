@@ -1,0 +1,1754 @@
+{
+  "updatedAt": "2026-08-25T23:27:38.365Z",
+  "mock": true,
+  "categories": [
+    {
+      "id": "luiers",
+      "label": "Luiers"
+    },
+    {
+      "id": "luierbroekjes",
+      "label": "Luierbroekjes"
+    },
+    {
+      "id": "billendoekjes",
+      "label": "Billendoekjes"
+    },
+    {
+      "id": "verzorging",
+      "label": "Verzorging"
+    }
+  ],
+  "shops": {
+    "trekpleister": {
+      "name": "Trekpleister",
+      "site": "https://www.trekpleister.nl"
+    },
+    "etos": {
+      "name": "Etos",
+      "site": "https://www.etos.nl"
+    },
+    "bol": {
+      "name": "bol",
+      "site": "https://www.bol.com"
+    },
+    "kruidvat": {
+      "name": "Kruidvat",
+      "site": "https://www.kruidvat.nl"
+    },
+    "babypark": {
+      "name": "Babypark",
+      "site": "https://www.babypark.nl"
+    }
+  },
+  "products": [
+    {
+      "id": "pampers-baby-dry-3",
+      "name": "Pampers Baby-Dry maat 3",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "3",
+      "weight": "6-10 kg",
+      "unit": "stuk",
+      "bestPrice": 12.98,
+      "bestUnitPrice": 0.1803,
+      "unitLabel": "per stuk",
+      "lowest30": 12.98,
+      "offers": [
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
+          "price": 12.98,
+          "unitPrice": 0.1803,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 72,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 3 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
+          "price": 17.01,
+          "unitPrice": 0.1955,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 87,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 3 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
+          "price": 24.74,
+          "unitPrice": 0.2249,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 110,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 3 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
+          "price": 24.42,
+          "unitPrice": 0.2282,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 107,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 3 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
+          "price": 18.23,
+          "unitPrice": 0.1982,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 92,
+            "unit": "stuk"
+          },
+          "inStock": false,
+          "title": "Pampers Baby-Dry maat 3 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-baby-dry-4",
+      "name": "Pampers Baby-Dry maat 4",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "4",
+      "weight": "9-14 kg",
+      "unit": "stuk",
+      "bestPrice": 16.57,
+      "bestUnitPrice": 0.1973,
+      "unitLabel": "per stuk",
+      "lowest30": 16.57,
+      "offers": [
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
+          "price": 16.57,
+          "unitPrice": 0.1973,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 84,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 4 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
+          "price": 19.09,
+          "unitPrice": 0.2053,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 93,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 4 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
+          "price": 19.11,
+          "unitPrice": 0.2055,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 93,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 4 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
+          "price": 19.54,
+          "unitPrice": 0.2057,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 95,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 4 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
+          "price": 19.62,
+          "unitPrice": 0.2065,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 95,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 4 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-baby-dry-5",
+      "name": "Pampers Baby-Dry maat 5",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "5",
+      "weight": "11-16 kg",
+      "unit": "stuk",
+      "bestPrice": 14.4,
+      "bestUnitPrice": 0.1895,
+      "unitLabel": "per stuk",
+      "lowest30": 14.4,
+      "offers": [
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
+          "price": 14.4,
+          "unitPrice": 0.1895,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 76,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 5 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
+          "price": 15.73,
+          "unitPrice": 0.1942,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 81,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 5 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
+          "price": 16.24,
+          "unitPrice": 0.2005,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 81,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 5 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
+          "price": 20.16,
+          "unitPrice": 0.2145,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 94,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 5 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
+          "price": 35.6,
+          "unitPrice": 0.2618,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 136,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 5 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-baby-dry-6",
+      "name": "Pampers Baby-Dry maat 6",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "6",
+      "weight": "13+ kg",
+      "unit": "stuk",
+      "bestPrice": 20.9,
+      "bestUnitPrice": 0.2177,
+      "unitLabel": "per stuk",
+      "lowest30": 20.9,
+      "offers": [
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
+          "price": 20.9,
+          "unitPrice": 0.2177,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 96,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 6 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
+          "price": 24.08,
+          "unitPrice": 0.2189,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 110,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 6 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
+          "price": 33.4,
+          "unitPrice": 0.2511,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 133,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 6 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
+          "price": 34.62,
+          "unitPrice": 0.2584,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 134,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 6 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
+          "price": 38.31,
+          "unitPrice": 0.2624,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 146,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry maat 6 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-premium-protection-1",
+      "name": "Pampers Premium Protection maat 1",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "1",
+      "weight": "2-5 kg",
+      "unit": "stuk",
+      "bestPrice": 23.74,
+      "bestUnitPrice": 0.2198,
+      "unitLabel": "per stuk",
+      "lowest30": 21.8,
+      "offers": [
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
+          "price": 23.74,
+          "unitPrice": 0.2198,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 108,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 1 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
+          "price": 21.8,
+          "unitPrice": 0.2202,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 99,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 1 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
+          "price": 28.09,
+          "unitPrice": 0.2341,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 120,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 1 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
+          "price": 28.68,
+          "unitPrice": 0.237,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 121,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 1 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
+          "price": 35.78,
+          "unitPrice": 0.2538,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 141,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 1 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-premium-protection-2",
+      "name": "Pampers Premium Protection maat 2",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "2",
+      "weight": "4-8 kg",
+      "unit": "stuk",
+      "bestPrice": 17.16,
+      "bestUnitPrice": 0.195,
+      "unitLabel": "per stuk",
+      "lowest30": 17.16,
+      "offers": [
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
+          "price": 17.16,
+          "unitPrice": 0.195,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 88,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 2 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
+          "price": 21.2,
+          "unitPrice": 0.2099,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 101,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 2 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
+          "price": 28.61,
+          "unitPrice": 0.2384,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 120,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 2 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
+          "price": 38.01,
+          "unitPrice": 0.264,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 144,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 2 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
+          "price": 37.5,
+          "unitPrice": 0.2679,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 140,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 2 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-premium-protection-3",
+      "name": "Pampers Premium Protection maat 3",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "3",
+      "weight": "6-10 kg",
+      "unit": "stuk",
+      "bestPrice": 23.81,
+      "bestUnitPrice": 0.2205,
+      "unitLabel": "per stuk",
+      "lowest30": 23.81,
+      "offers": [
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
+          "price": 23.81,
+          "unitPrice": 0.2205,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 108,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 3 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
+          "price": 27.18,
+          "unitPrice": 0.2323,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 117,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 3 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
+          "price": 26.07,
+          "unitPrice": 0.2328,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 112,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 3 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
+          "price": 30.82,
+          "unitPrice": 0.2408,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 128,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 3 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
+          "price": 36.84,
+          "unitPrice": 0.2631,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 140,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 3 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-premium-protection-4",
+      "name": "Pampers Premium Protection maat 4",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "4",
+      "weight": "9-14 kg",
+      "unit": "stuk",
+      "bestPrice": 13.3,
+      "bestUnitPrice": 0.1847,
+      "unitLabel": "per stuk",
+      "lowest30": 13.3,
+      "offers": [
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
+          "price": 13.3,
+          "unitPrice": 0.1847,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 72,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 4 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
+          "price": 17.51,
+          "unitPrice": 0.206,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 85,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 4 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
+          "price": 21.53,
+          "unitPrice": 0.2111,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 102,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 4 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
+          "price": 30.62,
+          "unitPrice": 0.2489,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 123,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 4 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
+          "price": 37.18,
+          "unitPrice": 0.2637,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 141,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Premium Protection maat 4 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-harmonie-3",
+      "name": "Pampers Harmonie maat 3",
+      "brand": "Pampers",
+      "category": "luiers",
+      "size": "3",
+      "weight": "6-10 kg",
+      "unit": "stuk",
+      "bestPrice": 18.6,
+      "bestUnitPrice": 0.2022,
+      "unitLabel": "per stuk",
+      "lowest30": 18.6,
+      "offers": [
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
+          "price": 18.6,
+          "unitPrice": 0.2022,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 92,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Harmonie maat 3 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
+          "price": 31.64,
+          "unitPrice": 0.2491,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 127,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Harmonie maat 3 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
+          "price": 33.5,
+          "unitPrice": 0.2577,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 130,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Harmonie maat 3 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
+          "price": 37.42,
+          "unitPrice": 0.2654,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 141,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Harmonie maat 3 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
+          "price": 40.17,
+          "unitPrice": 0.2696,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 149,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Harmonie maat 3 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "kruidvat-luiers-4",
+      "name": "Kruidvat luiers maat 4",
+      "brand": "Kruidvat",
+      "category": "luiers",
+      "size": "4",
+      "weight": "9-14 kg",
+      "unit": "stuk",
+      "bestPrice": 16.23,
+      "bestUnitPrice": 0.2004,
+      "unitLabel": "per stuk",
+      "lowest30": 16.23,
+      "offers": [
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Kruidvat%20luiers%20maat%204",
+          "price": 16.23,
+          "unitPrice": 0.2004,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 81,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Kruidvat luiers maat 4 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "etos-luiers-4",
+      "name": "Etos luiers maat 4",
+      "brand": "Etos",
+      "category": "luiers",
+      "size": "4",
+      "weight": "9-14 kg",
+      "unit": "stuk",
+      "bestPrice": 24.34,
+      "bestUnitPrice": 0.2296,
+      "unitLabel": "per stuk",
+      "lowest30": 24.34,
+      "offers": [
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Etos%20luiers%20maat%204",
+          "price": 24.34,
+          "unitPrice": 0.2296,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 106,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Etos luiers maat 4 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "naty-luiers-4",
+      "name": "Naty eco luiers maat 4",
+      "brand": "Naty",
+      "category": "luiers",
+      "size": "4",
+      "weight": "8-14 kg",
+      "unit": "stuk",
+      "bestPrice": 21.08,
+      "bestUnitPrice": 0.2087,
+      "unitLabel": "per stuk",
+      "lowest30": 21.08,
+      "offers": [
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Naty%20luiers%20maat%204",
+          "price": 21.08,
+          "unitPrice": 0.2087,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 101,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Naty eco luiers maat 4 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Naty%20luiers%20maat%204",
+          "price": 26.69,
+          "unitPrice": 0.2383,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 112,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Naty eco luiers maat 4 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Naty%20luiers%20maat%204",
+          "price": 31.09,
+          "unitPrice": 0.2429,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 128,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Naty eco luiers maat 4 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Naty%20luiers%20maat%204",
+          "price": 30.38,
+          "unitPrice": 0.249,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 122,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Naty eco luiers maat 4 (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Naty%20luiers%20maat%204",
+          "price": 39.66,
+          "unitPrice": 0.2644,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 150,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Naty eco luiers maat 4 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-pants-4",
+      "name": "Pampers Baby-Dry Pants maat 4",
+      "brand": "Pampers",
+      "category": "luierbroekjes",
+      "size": "4",
+      "weight": "9-15 kg",
+      "unit": "stuk",
+      "bestPrice": 12.44,
+      "bestUnitPrice": 0.2182,
+      "unitLabel": "per stuk",
+      "lowest30": 11.9,
+      "offers": [
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
+          "price": 12.44,
+          "unitPrice": 0.2182,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 57,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 4 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
+          "price": 11.9,
+          "unitPrice": 0.2245,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 53,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 4 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
+          "price": 13.12,
+          "unitPrice": 0.2262,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 58,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 4 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
+          "price": 15.4,
+          "unitPrice": 0.2333,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 66,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 4 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
+          "price": 26.69,
+          "unitPrice": 0.2933,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 91,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 4 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-pants-5",
+      "name": "Pampers Baby-Dry Pants maat 5",
+      "brand": "Pampers",
+      "category": "luierbroekjes",
+      "size": "5",
+      "weight": "12-17 kg",
+      "unit": "stuk",
+      "bestPrice": 16.59,
+      "bestUnitPrice": 0.2476,
+      "unitLabel": "per stuk",
+      "lowest30": 16.59,
+      "offers": [
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
+          "price": 16.59,
+          "unitPrice": 0.2476,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 67,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 5 (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
+          "price": 21.38,
+          "unitPrice": 0.2607,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 82,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 5 (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
+          "price": 23.63,
+          "unitPrice": 0.2716,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 87,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 5 (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
+          "price": 22.57,
+          "unitPrice": 0.2752,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 82,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 5 (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
+          "price": 34.22,
+          "unitPrice": 0.3139,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 109,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Baby-Dry Pants maat 5 (demo)"
+        }
+      ]
+    },
+    {
+      "id": "pampers-sensitive-billendoekjes",
+      "name": "Pampers Sensitive billendoekjes",
+      "brand": "Pampers",
+      "category": "billendoekjes",
+      "size": null,
+      "weight": null,
+      "unit": "stuk",
+      "bestPrice": 5.64,
+      "bestUnitPrice": 0.0252,
+      "unitLabel": "per stuk",
+      "lowest30": 5.64,
+      "offers": [
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Pampers%20Sensitive%20billendoekjes",
+          "price": 5.64,
+          "unitPrice": 0.0252,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 224,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Sensitive billendoekjes (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
+          "price": 7.75,
+          "unitPrice": 0.028,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 277,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Sensitive billendoekjes (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
+          "price": 8.36,
+          "unitPrice": 0.0287,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 291,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Sensitive billendoekjes (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
+          "price": 11.97,
+          "unitPrice": 0.0332,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 361,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Sensitive billendoekjes (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
+          "price": 11.98,
+          "unitPrice": 0.0335,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 358,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Pampers Sensitive billendoekjes (demo)"
+        }
+      ]
+    },
+    {
+      "id": "waterwipes-billendoekjes",
+      "name": "WaterWipes billendoekjes",
+      "brand": "WaterWipes",
+      "category": "billendoekjes",
+      "size": null,
+      "weight": null,
+      "unit": "stuk",
+      "bestPrice": 5.56,
+      "bestUnitPrice": 0.0254,
+      "unitLabel": "per stuk",
+      "lowest30": 5.56,
+      "offers": [
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=WaterWipes%20billendoekjes",
+          "price": 5.56,
+          "unitPrice": 0.0254,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 219,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "WaterWipes billendoekjes (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=WaterWipes%20billendoekjes",
+          "price": 5.71,
+          "unitPrice": 0.0261,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 219,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "WaterWipes billendoekjes (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=WaterWipes%20billendoekjes",
+          "price": 7.84,
+          "unitPrice": 0.0282,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 278,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "WaterWipes billendoekjes (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=WaterWipes%20billendoekjes",
+          "price": 9.17,
+          "unitPrice": 0.0298,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 308,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "WaterWipes billendoekjes (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=WaterWipes%20billendoekjes",
+          "price": 13.72,
+          "unitPrice": 0.034,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 404,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "WaterWipes billendoekjes (demo)"
+        }
+      ]
+    },
+    {
+      "id": "kruidvat-sensitive-billendoekjes",
+      "name": "Kruidvat Sensitive billendoekjes",
+      "brand": "Kruidvat",
+      "category": "billendoekjes",
+      "size": null,
+      "weight": null,
+      "unit": "stuk",
+      "bestPrice": 8.01,
+      "bestUnitPrice": 0.0277,
+      "unitLabel": "per stuk",
+      "lowest30": 8.01,
+      "offers": [
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Kruidvat%20sensitive%20billendoekjes",
+          "price": 8.01,
+          "unitPrice": 0.0277,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 289,
+            "unit": "stuk"
+          },
+          "inStock": false,
+          "title": "Kruidvat Sensitive billendoekjes (demo)"
+        }
+      ]
+    },
+    {
+      "id": "bepanthen-baby-zalf-30g",
+      "name": "Bepanthen Baby zalf 30 g",
+      "brand": "Bepanthen",
+      "category": "verzorging",
+      "size": null,
+      "weight": null,
+      "unit": "g",
+      "bestPrice": 6.86,
+      "bestUnitPrice": 22.87,
+      "unitLabel": "per 100 g",
+      "lowest30": 6.86,
+      "offers": [
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
+          "price": 6.86,
+          "unitPrice": 22.87,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 30,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 30 g (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
+          "price": 7.87,
+          "unitPrice": 26.23,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 30,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 30 g (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
+          "price": 8.24,
+          "unitPrice": 27.47,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 30,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 30 g (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
+          "price": 9.51,
+          "unitPrice": 31.7,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 30,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 30 g (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
+          "price": 9.78,
+          "unitPrice": 32.6,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 30,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 30 g (demo)"
+        }
+      ]
+    },
+    {
+      "id": "bepanthen-baby-zalf-100g",
+      "name": "Bepanthen Baby zalf 100 g",
+      "brand": "Bepanthen",
+      "category": "verzorging",
+      "size": null,
+      "weight": null,
+      "unit": "g",
+      "bestPrice": 7.2,
+      "bestUnitPrice": 7.2,
+      "unitLabel": "per 100 g",
+      "lowest30": 7.2,
+      "offers": [
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
+          "price": 7.2,
+          "unitPrice": 7.2,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 100,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 100 g (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
+          "price": 7.82,
+          "unitPrice": 7.82,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 100,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 100 g (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
+          "price": 8.02,
+          "unitPrice": 8.02,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 100,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 100 g (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
+          "price": 8.11,
+          "unitPrice": 8.11,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 100,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 100 g (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
+          "price": 9.2,
+          "unitPrice": 9.2,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 100,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Bepanthen Baby zalf 100 g (demo)"
+        }
+      ]
+    },
+    {
+      "id": "sudocrem-125g",
+      "name": "Sudocrem 125 g",
+      "brand": "Sudocrem",
+      "category": "verzorging",
+      "size": null,
+      "weight": null,
+      "unit": "g",
+      "bestPrice": 7.18,
+      "bestUnitPrice": 5.74,
+      "unitLabel": "per 100 g",
+      "lowest30": 7.18,
+      "offers": [
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Sudocrem%20125%20gram",
+          "price": 7.18,
+          "unitPrice": 5.74,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 125,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Sudocrem 125 g (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Sudocrem%20125%20gram",
+          "price": 7.93,
+          "unitPrice": 6.34,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 125,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Sudocrem 125 g (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Sudocrem%20125%20gram",
+          "price": 8.4,
+          "unitPrice": 6.72,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 125,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Sudocrem 125 g (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Sudocrem%20125%20gram",
+          "price": 9.11,
+          "unitPrice": 7.29,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 125,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Sudocrem 125 g (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Sudocrem%20125%20gram",
+          "price": 9.42,
+          "unitPrice": 7.54,
+          "unitLabel": "per 100 g",
+          "packSize": {
+            "amount": 125,
+            "unit": "g"
+          },
+          "inStock": true,
+          "title": "Sudocrem 125 g (demo)"
+        }
+      ]
+    },
+    {
+      "id": "zwitsal-badschuim-400ml",
+      "name": "Zwitsal badschuim 400 ml",
+      "brand": "Zwitsal",
+      "category": "verzorging",
+      "size": null,
+      "weight": null,
+      "unit": "ml",
+      "bestPrice": 8.19,
+      "bestUnitPrice": 2.05,
+      "unitLabel": "per 100 ml",
+      "lowest30": 8.19,
+      "offers": [
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
+          "price": 8.19,
+          "unitPrice": 2.05,
+          "unitLabel": "per 100 ml",
+          "packSize": {
+            "amount": 400,
+            "unit": "ml"
+          },
+          "inStock": true,
+          "title": "Zwitsal badschuim 400 ml (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
+          "price": 8.97,
+          "unitPrice": 2.24,
+          "unitLabel": "per 100 ml",
+          "packSize": {
+            "amount": 400,
+            "unit": "ml"
+          },
+          "inStock": true,
+          "title": "Zwitsal badschuim 400 ml (demo)"
+        },
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Zwitsal%20badschuim%20400%20ml",
+          "price": 9.3,
+          "unitPrice": 2.33,
+          "unitLabel": "per 100 ml",
+          "packSize": {
+            "amount": 400,
+            "unit": "ml"
+          },
+          "inStock": true,
+          "title": "Zwitsal badschuim 400 ml (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
+          "price": 9.34,
+          "unitPrice": 2.34,
+          "unitLabel": "per 100 ml",
+          "packSize": {
+            "amount": 400,
+            "unit": "ml"
+          },
+          "inStock": true,
+          "title": "Zwitsal badschuim 400 ml (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
+          "price": 8.44,
+          "unitPrice": 2.11,
+          "unitLabel": "per 100 ml",
+          "packSize": {
+            "amount": 400,
+            "unit": "ml"
+          },
+          "inStock": false,
+          "title": "Zwitsal badschuim 400 ml (demo)"
+        }
+      ]
+    },
+    {
+      "id": "zwitsal-billendoekjes",
+      "name": "Zwitsal billendoekjes",
+      "brand": "Zwitsal",
+      "category": "billendoekjes",
+      "size": null,
+      "weight": null,
+      "unit": "stuk",
+      "bestPrice": 5.45,
+      "bestUnitPrice": 0.0253,
+      "unitLabel": "per stuk",
+      "lowest30": 5.45,
+      "offers": [
+        {
+          "shop": "bol",
+          "shopName": "bol",
+          "url": "https://www.bol.com/zoeken?q=Zwitsal%20billendoekjes",
+          "price": 5.45,
+          "unitPrice": 0.0253,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 215,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Zwitsal billendoekjes (demo)"
+        },
+        {
+          "shop": "etos",
+          "shopName": "Etos",
+          "url": "https://www.etos.nl/zoeken?q=Zwitsal%20billendoekjes",
+          "price": 7.67,
+          "unitPrice": 0.0287,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 267,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Zwitsal billendoekjes (demo)"
+        },
+        {
+          "shop": "kruidvat",
+          "shopName": "Kruidvat",
+          "url": "https://www.kruidvat.nl/zoeken?q=Zwitsal%20billendoekjes",
+          "price": 9.92,
+          "unitPrice": 0.0307,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 323,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Zwitsal billendoekjes (demo)"
+        },
+        {
+          "shop": "babypark",
+          "shopName": "Babypark",
+          "url": "https://www.babypark.nl/zoeken?q=Zwitsal%20billendoekjes",
+          "price": 10.36,
+          "unitPrice": 0.0307,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 338,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Zwitsal billendoekjes (demo)"
+        },
+        {
+          "shop": "trekpleister",
+          "shopName": "Trekpleister",
+          "url": "https://www.trekpleister.nl/zoeken?q=Zwitsal%20billendoekjes",
+          "price": 10.87,
+          "unitPrice": 0.0319,
+          "unitLabel": "per stuk",
+          "packSize": {
+            "amount": 341,
+            "unit": "stuk"
+          },
+          "inStock": true,
+          "title": "Zwitsal billendoekjes (demo)"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "products": 22,
+    "productsWithOffers": 22,
+    "offers": 98,
+    "shops": 5
+  }
+}

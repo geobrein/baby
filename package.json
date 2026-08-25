@@ -1,0 +1,17 @@
+{
+  "name": "babyprijs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prijsvergelijker voor babyproducten (luiers, billendoekjes, verzorging) in Nederlandse webwinkels.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "fetch": "node scripts/fetch-prices.mjs",
+    "fetch:mock": "node scripts/fetch-prices.mjs --mock",
+    "check-catalog": "node scripts/check-catalog.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}

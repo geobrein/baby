@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babyprijs — luiers en babyverzorging vergelijken</title>
+<meta name="description" content="Vergelijk dagelijks bijgewerkte prijzen van luiers, billendoekjes en babyverzorging zoals Bepanthen in Nederlandse webwinkels. Inclusief prijs per luier.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🍼</text></svg>">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">🍼</span>
+      <div>
+        <h1>Babyprijs</h1>
+        <p class="tagline">Luiers, billendoekjes en babyverzorging vergelijken bij Nederlandse webwinkels</p>
+      </div>
+    </div>
+    <p class="updated" id="updated" aria-live="polite">Prijzen laden…</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="filters" aria-label="Filters">
+    <div class="filter-row">
+      <label class="search">
+        <span class="visually-hidden">Zoek een product</span>
+        <input type="search" id="q" placeholder="Zoek op product of merk, bijv. Bepanthen of Pampers maat 4" autocomplete="off">
+      </label>
+      <label class="sort">
+        <span class="visually-hidden">Sorteren</span>
+        <select id="sort">
+          <option value="unit">Sorteer op stukprijs</option>
+          <option value="price">Sorteer op totaalprijs</option>
+          <option value="name">Sorteer op naam</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="chips" id="categories" role="group" aria-label="Categorie"></div>
+    <div class="chips" id="sizes" role="group" aria-label="Maat"></div>
+    <div class="chips" id="brands" role="group" aria-label="Merk"></div>
+
+    <div class="filter-row secondary">
+      <label class="toggle"><input type="checkbox" id="instock"> Alleen op voorraad</label>
+      <button type="button" class="link-button" id="reset">Filters wissen</button>
+      <span class="count" id="count"></span>
+    </div>
+  </section>
+
+  <p class="notice" id="demo-notice" hidden>
+    Dit zijn <strong>demoprijzen</strong>. Zodra de dagelijkse GitHub Action draait, staan hier echte winkelprijzen.
+  </p>
+
+  <div id="results" class="results"></div>
+  <p class="empty" id="empty" hidden>Geen producten gevonden met deze filters.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Prijzen worden elke dag automatisch opgehaald bij de webwinkels. Er kan altijd een prijswijziging tussen zitten:
+      de prijs in de winkel is leidend. Klik op <em>Naar winkel</em> om de actuele prijs te controleren.</p>
+    <p class="muted">Geen commerciële samenwerking met de genoemde winkels. Vragen of een winkel toevoegen? Zie de README in de repository.</p>
+  </div>
+</footer>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>

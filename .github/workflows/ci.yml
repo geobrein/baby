@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm test
+      - name: Demoronde draaien (zonder netwerk)
+        run: node scripts/fetch-prices.mjs --mock --quiet
+      - name: Catalogus valideren
+        run: node scripts/validate-catalog.mjs
