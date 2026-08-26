@@ -1,0 +1,48 @@
+{
+  "ranAt": "2026-08-26T06:50:30.181Z",
+  "mock": false,
+  "durationSeconds": 15,
+  "budgetMinutes": 30,
+  "shops": [
+    "kruidvat"
+  ],
+  "productCount": 28,
+  "offerCount": 0,
+  "problems": [
+    {
+      "product": "pampers-baby-dry-3",
+      "shop": "kruidvat",
+      "error": "zoeken mislukt (HTTP 403)"
+    },
+    {
+      "product": "pampers-baby-dry-4",
+      "shop": "kruidvat",
+      "error": "zoeken mislukt (HTTP 403)"
+    },
+    {
+      "product": "pampers-baby-dry-5",
+      "shop": "kruidvat",
+      "error": "zoeken mislukt (HTTP 403)"
+    },
+    {
+      "product": "pampers-baby-dry-6",
+      "shop": "kruidvat",
+      "error": "zoeken mislukt (HTTP 403)"
+    },
+    {
+      "product": "pampers-premium-protection-1",
+      "shop": "kruidvat",
+      "error": "zoeken mislukt (HTTP 403)"
+    },
+    {
+      "product": "pampers-premium-protection-2",
+      "shop": "kruidvat",
+      "error": "zoeken mislukt (HTTP 403)"
+    },
+    {
+      "product": "(rest)",
+      "shop": "kruidvat",
+      "error": "winkel overgeslagen na 6 mislukkingen op rij"
+    }
+  ]
+}
