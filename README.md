@@ -292,6 +292,39 @@ ze allebei:
 Zolang geen van beide is ingesteld, doet de dagelijkse ronde niets en blijft de site staan
 zoals hij stond. Er wordt dan geen verkeer naar de winkels gestuurd.
 
+## Waarom het blokkeert, en wat dat betekent
+
+Wat we tegenkomen is grotendeels **waar het verkeer vandaan komt**, niet wat we doen. GitHub Actions
+draait in datacenter-IP-reeksen, en de botbescherming die winkels als Kruidvat en Albert Heijn
+gebruiken weert die reeksen standaard. Dezelfde beleefde verzoeken vanaf een gewone
+thuisverbinding krijgen doorgaans wel antwoord.
+
+Dat opent een derde route naast feeds en vaste URL's: **de ronde op eigen hardware draaien**, met
+een self-hosted runner (een Raspberry Pi, NAS of een pc die af en toe aanstaat). De workflow
+blijft dezelfde; alleen `runs-on` verandert. Daarmee komen ook de supermarkten in beeld.
+
+Weeg dat wel eerlijk: een HTTP 403 is de winkel die nee zegt, ongeacht vanaf welk IP je het
+vraagt. Wat dit project altijd blijft doen is robots.txt respecteren, zich eerlijk identificeren
+met een eigen user-agent en hooguit een paar verzoeken per minuut per winkel doen. Waar een
+winkel het zoeken in robots.txt verbiedt, wordt er niet gezocht - ook niet vanaf een ander IP.
+
+### Supermarkten
+
+Gemeten op 26 augustus 2026:
+
+| Supermarkt | Bereikbaar | Bruikbaar voor luiers |
+| --- | --- | --- |
+| Albert Heijn | nee (HTTP 403) | verkoopt A-merken online, maar weert ons verkeer |
+| Jumbo | nee (timeout) | idem |
+| Dirk | ja (827 kB HTML) | geen babycategorie gevonden vanaf de homepage |
+| Lidl | ja, met echte categoriepagina's | vooral eigen merk en non-food |
+| Aldi | ja (157 kB HTML) | geen babycategorie gevonden vanaf de homepage |
+| Plus, Coop | homepage is een lege JS-schil (2 kB) | nee |
+
+Supermarkten hebben bovendien zelden een affiliateprogramma voor boodschappen, dus daar ligt ook
+geen feed klaar. Voor Albert Heijn en Jumbo - de twee die er voor luiers echt toe doen - blijft
+alleen de eigen-hardware-route of handwerk over.
+
 ## Beperkingen om te weten
 
 - De startcatalogus is **niet tegen de echte winkels getest** (dit project is zonder toegang tot
