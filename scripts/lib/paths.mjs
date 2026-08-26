@@ -10,6 +10,7 @@ export const paths = {
   shops: path.join(DATA_DIR, 'shops.json'),
   resolved: path.join(DATA_DIR, 'resolved.json'),
   history: path.join(DATA_DIR, 'history.json'),
+  identity: path.join(DATA_DIR, 'identity.json'),
   report: path.join(DATA_DIR, 'report.json'),
   sitePrices: path.join(SITE_DATA_DIR, 'prices.json'),
 };

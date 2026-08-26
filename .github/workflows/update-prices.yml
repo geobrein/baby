@@ -45,7 +45,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data/prices.json data/resolved.json data/history.json data/report.json
+          git add site/data/prices.json data/resolved.json data/history.json data/identity.json data/report.json
           if git diff --staged --quiet; then
             echo 'Geen prijswijzigingen.'
           else

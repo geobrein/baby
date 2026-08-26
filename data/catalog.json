@@ -1,10 +1,22 @@
 {
-  "$comment": "Startcatalogus. Voeg producten toe door een blok te kopieren. 'query' is waarmee de winkel doorzocht wordt, 'match' bepaalt of een zoekresultaat het juiste product is. Gevonden product-URL's worden gecachet in data/resolved.json. Pin desgewenst een vaste URL per winkel via 'links'.",
+  "$comment": "Startcatalogus. Voeg producten toe door een blok te kopieren. 'query' is waarmee de winkel doorzocht wordt, 'match' bepaalt of een zoekresultaat het juiste product is. Gevonden product-URL's worden gecachet in data/resolved.json. Pin desgewenst een vaste URL per winkel via 'links'. Met 'gtins' (lijst met EAN-nummers) wordt streng op artikelnummer gecontroleerd: winkels die een ander artikel tonen vallen af. Vul die lijst automatisch na een echte prijsronde met 'node scripts/pin-gtins.mjs --write', of zet 'strictGtin': false om de controle voor een product uit te schakelen.",
   "categories": [
-    { "id": "luiers", "label": "Luiers" },
-    { "id": "luierbroekjes", "label": "Luierbroekjes" },
-    { "id": "billendoekjes", "label": "Billendoekjes" },
-    { "id": "verzorging", "label": "Verzorging" }
+    {
+      "id": "luiers",
+      "label": "Luiers"
+    },
+    {
+      "id": "luierbroekjes",
+      "label": "Luierbroekjes"
+    },
+    {
+      "id": "billendoekjes",
+      "label": "Billendoekjes"
+    },
+    {
+      "id": "verzorging",
+      "label": "Verzorging"
+    }
   ],
   "products": [
     {
@@ -16,7 +28,17 @@
       "weight": "6-10 kg",
       "unit": "stuk",
       "query": "Pampers Baby-Dry maat 3 luiers",
-      "match": { "must": ["pampers", "dry"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "dry"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-baby-dry-4",
@@ -27,7 +49,17 @@
       "weight": "9-14 kg",
       "unit": "stuk",
       "query": "Pampers Baby-Dry maat 4 luiers",
-      "match": { "must": ["pampers", "dry"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "dry"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-baby-dry-5",
@@ -38,7 +70,17 @@
       "weight": "11-16 kg",
       "unit": "stuk",
       "query": "Pampers Baby-Dry maat 5 luiers",
-      "match": { "must": ["pampers", "dry"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "dry"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-baby-dry-6",
@@ -49,7 +91,17 @@
       "weight": "13+ kg",
       "unit": "stuk",
       "query": "Pampers Baby-Dry maat 6 luiers",
-      "match": { "must": ["pampers", "dry"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "dry"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-premium-protection-1",
@@ -60,7 +112,17 @@
       "weight": "2-5 kg",
       "unit": "stuk",
       "query": "Pampers Premium Protection maat 1 luiers",
-      "match": { "must": ["pampers", "premium"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "premium"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-premium-protection-2",
@@ -71,7 +133,17 @@
       "weight": "4-8 kg",
       "unit": "stuk",
       "query": "Pampers Premium Protection maat 2 luiers",
-      "match": { "must": ["pampers", "premium"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "premium"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-premium-protection-3",
@@ -82,7 +154,17 @@
       "weight": "6-10 kg",
       "unit": "stuk",
       "query": "Pampers Premium Protection maat 3 luiers",
-      "match": { "must": ["pampers", "premium"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "premium"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-premium-protection-4",
@@ -93,7 +175,17 @@
       "weight": "9-14 kg",
       "unit": "stuk",
       "query": "Pampers Premium Protection maat 4 luiers",
-      "match": { "must": ["pampers", "premium"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "premium"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "pampers-harmonie-3",
@@ -104,7 +196,17 @@
       "weight": "6-10 kg",
       "unit": "stuk",
       "query": "Pampers Harmonie maat 3 luiers",
-      "match": { "must": ["pampers", "harmonie"], "none": ["pants", "broekjes", "broekje"] }
+      "match": {
+        "must": [
+          "pampers",
+          "harmonie"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje"
+        ]
+      }
     },
     {
       "id": "kruidvat-luiers-4",
@@ -115,8 +217,21 @@
       "weight": "9-14 kg",
       "unit": "stuk",
       "query": "Kruidvat luiers maat 4",
-      "shops": ["kruidvat"],
-      "match": { "must": ["kruidvat", "luier"], "none": ["pants", "broekjes", "broekje", "zwemluier"] }
+      "shops": [
+        "kruidvat"
+      ],
+      "match": {
+        "must": [
+          "kruidvat",
+          "luier"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
     },
     {
       "id": "etos-luiers-4",
@@ -127,8 +242,21 @@
       "weight": "9-14 kg",
       "unit": "stuk",
       "query": "Etos luiers maat 4",
-      "shops": ["etos"],
-      "match": { "must": ["etos", "luier"], "none": ["pants", "broekjes", "broekje", "zwemluier"] }
+      "shops": [
+        "etos"
+      ],
+      "match": {
+        "must": [
+          "etos",
+          "luier"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
     },
     {
       "id": "naty-luiers-4",
@@ -139,7 +267,17 @@
       "weight": "8-14 kg",
       "unit": "stuk",
       "query": "Naty luiers maat 4",
-      "match": { "must": ["naty"], "none": ["pants", "broekjes", "broekje", "zwemluier"] }
+      "match": {
+        "must": [
+          "naty"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
     },
     {
       "id": "pampers-pants-4",
@@ -150,7 +288,15 @@
       "weight": "9-15 kg",
       "unit": "stuk",
       "query": "Pampers Baby-Dry Pants maat 4",
-      "match": { "must": ["pampers", "pants"], "none": ["zwemluier"] }
+      "match": {
+        "must": [
+          "pampers",
+          "pants"
+        ],
+        "none": [
+          "zwemluier"
+        ]
+      }
     },
     {
       "id": "pampers-pants-5",
@@ -161,7 +307,15 @@
       "weight": "12-17 kg",
       "unit": "stuk",
       "query": "Pampers Baby-Dry Pants maat 5",
-      "match": { "must": ["pampers", "pants"], "none": ["zwemluier"] }
+      "match": {
+        "must": [
+          "pampers",
+          "pants"
+        ],
+        "none": [
+          "zwemluier"
+        ]
+      }
     },
     {
       "id": "pampers-sensitive-billendoekjes",
@@ -170,7 +324,15 @@
       "category": "billendoekjes",
       "unit": "stuk",
       "query": "Pampers Sensitive billendoekjes",
-      "match": { "must": ["pampers", "sensitive"], "none": ["luier"] }
+      "match": {
+        "must": [
+          "pampers",
+          "sensitive"
+        ],
+        "none": [
+          "luier"
+        ]
+      }
     },
     {
       "id": "waterwipes-billendoekjes",
@@ -179,7 +341,12 @@
       "category": "billendoekjes",
       "unit": "stuk",
       "query": "WaterWipes billendoekjes",
-      "match": { "must": ["waterwipes"], "none": [] }
+      "match": {
+        "must": [
+          "waterwipes"
+        ],
+        "none": []
+      }
     },
     {
       "id": "kruidvat-sensitive-billendoekjes",
@@ -188,8 +355,18 @@
       "category": "billendoekjes",
       "unit": "stuk",
       "query": "Kruidvat sensitive billendoekjes",
-      "shops": ["kruidvat"],
-      "match": { "must": ["kruidvat", "doekjes"], "none": ["luier"] }
+      "shops": [
+        "kruidvat"
+      ],
+      "match": {
+        "must": [
+          "kruidvat",
+          "doekjes"
+        ],
+        "none": [
+          "luier"
+        ]
+      }
     },
     {
       "id": "bepanthen-baby-zalf-30g",
@@ -197,9 +374,21 @@
       "brand": "Bepanthen",
       "category": "verzorging",
       "unit": "g",
-      "packSize": { "amount": 30, "unit": "g" },
+      "packSize": {
+        "amount": 30,
+        "unit": "g"
+      },
       "query": "Bepanthen baby zalf 30 gram",
-      "match": { "must": ["bepanthen"], "none": ["spray", "creme"], "packSize": 30 }
+      "match": {
+        "must": [
+          "bepanthen"
+        ],
+        "none": [
+          "spray",
+          "creme"
+        ],
+        "packSize": 30
+      }
     },
     {
       "id": "bepanthen-baby-zalf-100g",
@@ -207,9 +396,21 @@
       "brand": "Bepanthen",
       "category": "verzorging",
       "unit": "g",
-      "packSize": { "amount": 100, "unit": "g" },
+      "packSize": {
+        "amount": 100,
+        "unit": "g"
+      },
       "query": "Bepanthen baby zalf 100 gram",
-      "match": { "must": ["bepanthen"], "none": ["spray", "creme"], "packSize": 100 }
+      "match": {
+        "must": [
+          "bepanthen"
+        ],
+        "none": [
+          "spray",
+          "creme"
+        ],
+        "packSize": 100
+      }
     },
     {
       "id": "sudocrem-125g",
@@ -217,9 +418,18 @@
       "brand": "Sudocrem",
       "category": "verzorging",
       "unit": "g",
-      "packSize": { "amount": 125, "unit": "g" },
+      "packSize": {
+        "amount": 125,
+        "unit": "g"
+      },
       "query": "Sudocrem 125 gram",
-      "match": { "must": ["sudocrem"], "none": [], "packSize": 125 }
+      "match": {
+        "must": [
+          "sudocrem"
+        ],
+        "none": [],
+        "packSize": 125
+      }
     },
     {
       "id": "zwitsal-badschuim-400ml",
@@ -227,9 +437,19 @@
       "brand": "Zwitsal",
       "category": "verzorging",
       "unit": "ml",
-      "packSize": { "amount": 400, "unit": "ml" },
+      "packSize": {
+        "amount": 400,
+        "unit": "ml"
+      },
       "query": "Zwitsal badschuim 400 ml",
-      "match": { "must": ["zwitsal", "badschuim"], "none": [], "packSize": 400 }
+      "match": {
+        "must": [
+          "zwitsal",
+          "badschuim"
+        ],
+        "none": [],
+        "packSize": 400
+      }
     },
     {
       "id": "zwitsal-billendoekjes",
@@ -238,7 +458,155 @@
       "category": "billendoekjes",
       "unit": "stuk",
       "query": "Zwitsal billendoekjes",
-      "match": { "must": ["zwitsal", "doekjes"], "none": [] }
+      "match": {
+        "must": [
+          "zwitsal",
+          "doekjes"
+        ],
+        "none": []
+      }
+    },
+    {
+      "id": "kruidvat-luiers-3",
+      "name": "Kruidvat luiers maat 3",
+      "brand": "Kruidvat",
+      "category": "luiers",
+      "size": "3",
+      "weight": "6-10 kg",
+      "unit": "stuk",
+      "query": "Kruidvat luiers maat 3",
+      "shops": [
+        "kruidvat"
+      ],
+      "match": {
+        "must": [
+          "kruidvat",
+          "luier"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
+    },
+    {
+      "id": "kruidvat-luiers-5",
+      "name": "Kruidvat luiers maat 5",
+      "brand": "Kruidvat",
+      "category": "luiers",
+      "size": "5",
+      "weight": "11-16 kg",
+      "unit": "stuk",
+      "query": "Kruidvat luiers maat 5",
+      "shops": [
+        "kruidvat"
+      ],
+      "match": {
+        "must": [
+          "kruidvat",
+          "luier"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
+    },
+    {
+      "id": "etos-luiers-3",
+      "name": "Etos luiers maat 3",
+      "brand": "Etos",
+      "category": "luiers",
+      "size": "3",
+      "weight": "6-10 kg",
+      "unit": "stuk",
+      "query": "Etos luiers maat 3",
+      "shops": [
+        "etos"
+      ],
+      "match": {
+        "must": [
+          "etos",
+          "luier"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
+    },
+    {
+      "id": "etos-luiers-5",
+      "name": "Etos luiers maat 5",
+      "brand": "Etos",
+      "category": "luiers",
+      "size": "5",
+      "weight": "11-16 kg",
+      "unit": "stuk",
+      "query": "Etos luiers maat 5",
+      "shops": [
+        "etos"
+      ],
+      "match": {
+        "must": [
+          "etos",
+          "luier"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
+    },
+    {
+      "id": "bambo-nature-4",
+      "name": "Bambo Nature luiers maat 4",
+      "brand": "Bambo Nature",
+      "category": "luiers",
+      "size": "4",
+      "weight": "7-14 kg",
+      "unit": "stuk",
+      "query": "Bambo Nature luiers maat 4",
+      "match": {
+        "must": [
+          "bambo"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
+    },
+    {
+      "id": "naty-luiers-3",
+      "name": "Naty eco luiers maat 3",
+      "brand": "Naty",
+      "category": "luiers",
+      "size": "3",
+      "weight": "4-9 kg",
+      "unit": "stuk",
+      "query": "Naty luiers maat 3",
+      "match": {
+        "must": [
+          "naty"
+        ],
+        "none": [
+          "pants",
+          "broekjes",
+          "broekje",
+          "zwemluier"
+        ]
+      }
     }
   ]
 }

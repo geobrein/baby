@@ -2,6 +2,22 @@
 import { extractLinks, stripTags, decodeEntities } from './html.mjs';
 import { extractProduct, unitPrice } from './parse.mjs';
 import { bestCandidate, scoreCandidate } from './match.mjs';
+import { normalizeGtin, displayGtin } from './identity.mjs';
+
+/**
+ * Mag deze pagina bij dit product horen, gelet op de artikelnummers in de catalogus?
+ * Zonder lijst in de catalogus (of zonder EAN op de pagina) valt er niets te weerleggen.
+ */
+export function gtinAllowed(product, gtin) {
+  if (product.strictGtin === false) return { ok: true, reason: 'EAN-controle staat uit voor dit product' };
+  const allowed = (product.gtins ?? []).map((g) => normalizeGtin(g)).filter(Boolean);
+  if (!allowed.length) return { ok: true, reason: 'geen EAN-lijst in de catalogus' };
+  const found = normalizeGtin(gtin);
+  if (!found) return { ok: true, reason: 'geen EAN op de pagina' };
+  return allowed.includes(found)
+    ? { ok: true, reason: 'EAN komt overeen' }
+    : { ok: false, reason: `EAN ${displayGtin(found)} staat niet in de catalogus` };
+}
 
 /** Zet een slug om in een leesbare titel: "pampers-baby-dry-maat-4" -> "pampers baby dry maat 4". */
 export function titleFromUrl(url) {
@@ -81,17 +97,20 @@ export async function resolveProductUrl(fetcher, shopId, shop, product, { maxChe
   if (!ranked.length) {
     return { url: null, error: `geen passend zoekresultaat (${candidates.length} links bekeken)` };
   }
-  // Bevestig op de productpagina zelf: de echte titel is betrouwbaarder dan een slug.
+  // Bevestig op de productpagina zelf: de echte titel en het EAN zijn betrouwbaarder dan een slug.
+  let lastReason = null;
   for (const candidate of ranked) {
     const page = await fetcher.text(candidate.url, { delayMs: shop.delayMs });
     if (!page.ok) continue;
     const info = extractProduct(page.body, page.url);
     const verdict = scoreCandidate(info.title ?? candidate.title, product);
-    if (verdict.ok && info.price != null) {
+    const identity = gtinAllowed(product, info.gtin);
+    if (verdict.ok && identity.ok && info.price != null) {
       return { url: page.url, error: null, page: info };
     }
+    if (!identity.ok) lastReason = identity.reason;
   }
-  return { url: null, error: 'zoekresultaten kwamen niet overeen met het product' };
+  return { url: null, error: lastReason ?? 'zoekresultaten kwamen niet overeen met het product' };
 }
 
 /**
@@ -108,6 +127,9 @@ export async function fetchOffer(fetcher, shopId, shop, product, knownUrl) {
     inStock: null,
     title: null,
     packSize: null,
+    gtin: null,
+    sku: null,
+    mpn: null,
     unitPrice: null,
     unitLabel: null,
     ok: false,
@@ -121,9 +143,12 @@ export async function fetchOffer(fetcher, shopId, shop, product, knownUrl) {
     if (page.ok) {
       const parsed = extractProduct(page.body, page.url);
       const verdict = scoreCandidate(parsed.title ?? titleFromUrl(page.url), product);
-      if (verdict.ok && parsed.price != null) {
+      const identity = gtinAllowed(product, parsed.gtin);
+      if (verdict.ok && identity.ok && parsed.price != null) {
         info = parsed;
         offer.url = page.url;
+      } else if (!identity.ok) {
+        offer.error = `ander artikel op deze pagina (${identity.reason})`;
       } else {
         offer.error = parsed.price == null ? 'geen prijs op de pagina' : `pagina past niet meer (${verdict.reason})`;
       }
@@ -147,6 +172,9 @@ export async function fetchOffer(fetcher, shopId, shop, product, knownUrl) {
 
   offer.title = info.title;
   offer.price = info.price;
+  offer.gtin = info.gtin ?? null;
+  offer.sku = info.sku ?? null;
+  offer.mpn = info.mpn ?? null;
   offer.currency = info.currency ?? 'EUR';
   offer.inStock = info.inStock;
   offer.packSize = info.packSize ?? product.packSize ?? null;

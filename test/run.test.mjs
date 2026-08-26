@@ -23,6 +23,7 @@ async function workspace() {
     shops: path.join(dir, 'shops.json'),
     resolved: path.join(dir, 'resolved.json'),
     history: path.join(dir, 'history.json'),
+    identity: path.join(dir, 'identity.json'),
     report: path.join(dir, 'report.json'),
     sitePrices: path.join(dir, 'site', 'prices.json'),
   };
@@ -111,6 +112,11 @@ test('een volledige ronde schrijft site-data, cache en historie', async (t) => {
   assert.ok(!resolved['bestaat-niet|test'], 'mislukte combinaties blijven niet in de cache staan');
   const history = JSON.parse(await fs.readFile(paths.history, 'utf8'));
   assert.equal(history['pampers-baby-dry-4'].test.length, 1);
+  const identity = JSON.parse(await fs.readFile(paths.identity, 'utf8'));
+  assert.equal(identity['pampers-baby-dry-4'].test.gtin, '08006540090992');
+  assert.equal(identity['pampers-baby-dry-4'].test.sku, '112233');
+  assert.equal(product.offers[0].gtin, '8006540090992');
+  assert.equal(product.offers[0].sku, '112233');
 });
 
 test('de tweede ronde gebruikt de opgeslagen product-URL', async (t) => {
@@ -135,6 +141,7 @@ test('demomodus laat cache en historie met rust', async (t) => {
   assert.ok(payload.products.every((p) => p.offers.length === 1));
   await assert.rejects(fs.access(paths.resolved));
   await assert.rejects(fs.access(paths.history));
+  await assert.rejects(fs.access(paths.identity));
 });
 
 test('run stopt met een duidelijke melding zonder actieve winkels', async (t) => {

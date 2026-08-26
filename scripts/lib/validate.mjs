@@ -1,5 +1,6 @@
 /** Controleert catalogus en winkelconfiguratie zonder netwerk. */
 import { scoreCandidate } from './match.mjs';
+import { isValidGtin } from './identity.mjs';
 
 /**
  * @returns {{errors: string[], warnings: string[]}}
@@ -48,6 +49,19 @@ export function validateCatalog(catalog, shops) {
     }
     for (const shopId of Object.keys(product.links ?? {})) {
       if (!shopIds.has(shopId)) errors.push(`${label}: link voor onbekende winkel '${shopId}'`);
+    }
+
+    if (product.gtins !== undefined) {
+      if (!Array.isArray(product.gtins)) errors.push(`${label}: 'gtins' moet een lijst zijn`);
+      else {
+        for (const gtin of product.gtins) {
+          if (!isValidGtin(gtin)) errors.push(`${label}: ongeldig artikelnummer '${gtin}' (controlecijfer klopt niet)`);
+        }
+        if (!product.gtins.length) warnings.push(`${label}: lege 'gtins'-lijst, er wordt niet op EAN gecontroleerd`);
+      }
+    }
+    if (product.strictGtin === true && !product.gtins?.length) {
+      errors.push(`${label}: strictGtin staat aan maar er is geen 'gtins'-lijst`);
     }
 
     // De eigen naam (plus verpakking) moet door de eigen match-regels komen.

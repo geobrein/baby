@@ -20,9 +20,17 @@ const lines = [
 ];
 
 if (report.problems.length) {
-  lines.push('', '<details><summary>Niet gevonden</summary>', '');
-  for (const p of report.problems) lines.push(`- \`${p.shop}\` / \`${p.product}\`: ${p.error}`);
-  lines.push('', '</details>');
+  const identity = report.problems.filter((p) => /^gtin-|^verpakking-/.test(p.error));
+  const missing = report.problems.filter((p) => !identity.includes(p));
+  if (identity.length) {
+    lines.push('', `### Let op: ${identity.length} melding(en) over artikelnummers`, '');
+    for (const p of identity) lines.push(`- \`${p.shop}\` / \`${p.product}\`: ${p.error}`);
+  }
+  if (missing.length) {
+    lines.push('', '<details><summary>Niet gevonden</summary>', '');
+    for (const p of missing) lines.push(`- \`${p.shop}\` / \`${p.product}\`: ${p.error}`);
+    lines.push('', '</details>');
+  }
 }
 
 const text = `${lines.join('\n')}\n`;

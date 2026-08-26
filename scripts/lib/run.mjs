@@ -5,6 +5,8 @@ import { mockOffer } from './mock.mjs';
 import { paths as defaultPaths } from './paths.mjs';
 import { readJson, writeJson, appendHistory, lowestInPeriod } from './store.mjs';
 import { compareOffers } from './rank.mjs';
+import { verifyOffers, recordIdentity, EXACT } from './verify.mjs';
+import { displayGtin } from './identity.mjs';
 
 export function parseArgs(argv) {
   const args = { mock: false, robots: true, only: null, product: null, limit: null, quiet: false, help: false };
@@ -52,6 +54,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
 
   const resolved = (await readJson(paths.resolved, {})) ?? {};
   const history = (await readJson(paths.history, {})) ?? {};
+  const identity = (await readJson(paths.identity, {})) ?? {};
   const startedAt = new Date();
   const today = startedAt.toISOString().slice(0, 10);
 
@@ -88,13 +91,29 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
     }
   }));
 
-  const payload = buildPayload({ catalog, shops, products, offersByProduct, history, args, startedAt });
+  // Artikelnummers vergelijken: horen deze aanbiedingen wel bij hetzelfde artikel?
+  const verification = new Map();
+  for (const product of products) {
+    const raw = offersByProduct.get(product.id) ?? [];
+    if (!raw.length) continue;
+    const result = verifyOffers(product, raw, identity[product.id]);
+    offersByProduct.set(product.id, result.offers);
+    verification.set(product.id, result);
+    recordIdentity(identity, product.id, result.offers, startedAt);
+    for (const issue of result.issues) {
+      problems.push({ product: issue.product, shop: issue.shop, error: `${issue.type}: ${issue.message}` });
+      log(`  let op: ${issue.message} (${product.name}, ${issue.shop})`);
+    }
+  }
+
+  const payload = buildPayload({ catalog, shops, products, offersByProduct, verification, history, args, startedAt });
 
   await writeJson(paths.sitePrices, payload);
   // Demoprijzen mogen de echte cache en historie niet vervuilen.
   if (!args.mock) {
     await writeJson(paths.resolved, resolved);
     await writeJson(paths.history, history);
+    await writeJson(paths.identity, identity);
     await writeJson(paths.report, {
       ranAt: startedAt.toISOString(),
       mock: false,
@@ -108,7 +127,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   return { payload, problems };
 }
 
-function buildPayload({ catalog, shops, products, offersByProduct, history, args, startedAt }) {
+function buildPayload({ catalog, shops, products, offersByProduct, verification, history, args, startedAt }) {
   const usedShopIds = new Set();
   const out = [];
 
@@ -117,6 +136,7 @@ function buildPayload({ catalog, shops, products, offersByProduct, history, args
     if (!offers.length) continue;
     offers.forEach((o) => usedShopIds.add(o.shop));
     const best = offers[0];
+    const check = verification?.get(product.id);
     out.push({
       id: product.id,
       name: product.name,
@@ -128,6 +148,9 @@ function buildPayload({ catalog, shops, products, offersByProduct, history, args
       bestPrice: best.price,
       bestUnitPrice: best.unitPrice ?? null,
       unitLabel: best.unitLabel ?? null,
+      gtin: displayGtin(check?.reference ?? null),
+      gtinSource: check?.referenceSource ?? 'geen',
+      verifiedOffers: offers.filter((o) => o.verification === EXACT).length,
       lowest30: lowestInPeriod(history, product.id, 30, startedAt),
       offers: offers.map((o) => ({
         shop: o.shop,
@@ -139,6 +162,10 @@ function buildPayload({ catalog, shops, products, offersByProduct, history, args
         packSize: o.packSize ?? null,
         inStock: o.inStock,
         title: o.title ?? null,
+        gtin: o.gtinDisplay ?? null,
+        sku: o.sku ?? null,
+        verification: o.verification ?? 'onbekend',
+        gtinChanged: o.gtinChanged ?? false,
       })),
     });
   }
@@ -157,6 +184,7 @@ function buildPayload({ catalog, shops, products, offersByProduct, history, args
       productsWithOffers: out.length,
       offers: out.reduce((n, p) => n + p.offers.length, 0),
       shops: usedShopIds.size,
+      verifiedOffers: out.reduce((n, p) => n + p.verifiedOffers, 0),
     },
   };
 }

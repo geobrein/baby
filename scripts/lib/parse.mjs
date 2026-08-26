@@ -2,6 +2,7 @@
 import {
   extractJsonLd, flattenJsonLd, jsonLdType, metaContent, pageTitle, stripTags, decodeEntities,
 } from './html.mjs';
+import { extractIdentifiers, identifiersFromNode } from './identity.mjs';
 
 /**
  * Leest een prijs uit tekst zoals "€ 12,99", "12.99", "1.234,56" of "€1,234.56".
@@ -94,13 +95,18 @@ const OUT_OF_STOCK = /outofstock|out_of_stock|soldout|discontinued/i;
  */
 export function extractProduct(html, url = '') {
   const result = {
-    url, title: null, price: null, currency: 'EUR', inStock: null, image: null, packSize: null, source: null,
+    url, title: null, price: null, currency: 'EUR', inStock: null, image: null, packSize: null,
+    gtin: null, sku: null, mpn: null, source: null,
   };
   if (!html) return result;
 
   const product = findProductNode(html);
   if (product) {
     result.source = 'json-ld';
+    const ids = identifiersFromNode(product);
+    result.gtin = ids.gtin;
+    result.sku = ids.sku;
+    result.mpn = ids.mpn;
     result.title = cleanText(product.name) ?? result.title;
     result.image = firstImage(product.image) ?? result.image;
     const offer = pickOffer(product.offers);
@@ -145,6 +151,13 @@ export function extractProduct(html, url = '') {
     ?? cleanText(pageTitle(html));
   result.image = result.image ?? metaContent(html, 'og:image');
   result.packSize = result.packSize ?? parsePackSize(result.title) ?? parsePackSize(metaContent(html, 'og:description'));
+
+  if (!result.gtin || !result.sku) {
+    const ids = extractIdentifiers(html);
+    result.gtin ??= ids.gtin;
+    result.sku ??= ids.sku;
+    result.mpn ??= ids.mpn;
+  }
 
   return result;
 }

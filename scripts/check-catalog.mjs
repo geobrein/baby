@@ -10,6 +10,7 @@ import { Fetcher } from './lib/http.mjs';
 import { resolveProductUrl } from './lib/shop.mjs';
 import { paths } from './lib/paths.mjs';
 import { readJson, writeJson } from './lib/store.mjs';
+import { displayGtin } from './lib/identity.mjs';
 
 const args = process.argv.slice(2);
 const only = args.find((a) => a.startsWith('--only='))?.slice(7).split(',');
@@ -39,10 +40,13 @@ await Promise.all(activeShops.map(async ([shopId, shop]) => {
       ok: Boolean(result.url),
       url: result.url,
       price: result.page?.price ?? null,
+      gtin: displayGtin(result.page?.gtin ?? null),
+      sku: result.page?.sku ?? null,
       error: result.error,
     });
     const mark = result.url ? 'OK ' : 'X  ';
-    console.log(`${mark} ${shop.name.padEnd(14)} ${product.id.padEnd(34)} ${result.url ?? result.error}`);
+    const ean = result.page?.gtin ? ` [EAN ${displayGtin(result.page.gtin)}]` : '';
+    console.log(`${mark} ${shop.name.padEnd(14)} ${product.id.padEnd(34)} ${result.url ?? result.error}${ean}`);
   }
 }));
 
@@ -53,7 +57,9 @@ await writeJson(paths.report.replace('report.json', 'catalog-check.json'), {
   failed: failed.length,
   rows,
 });
-console.log(`\n${rows.length - failed.length}/${rows.length} combinaties gevonden. Rapport: data/catalog-check.json`);
+const withGtin = rows.filter((r) => r.gtin).length;
+console.log(`\n${rows.length - failed.length}/${rows.length} combinaties gevonden, ${withGtin} met artikelnummer. Rapport: data/catalog-check.json`);
+console.log('Tip: leg de gevonden EANs vast met "node scripts/pin-gtins.mjs --write" na een echte prijsronde.');
 if (failed.length) {
   console.log('Niet gevonden:');
   for (const row of failed) console.log(`  ${row.shop} / ${row.product}: ${row.error}`);

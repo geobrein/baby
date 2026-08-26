@@ -1,6 +1,7 @@
 /** Verzint stabiele demoprijzen zodat de site zonder netwerk te bekijken is. */
 import { unitLabelFor } from './shop.mjs';
 import { unitPrice } from './parse.mjs';
+import { checkDigit } from './identity.mjs';
 
 function hash(text) {
   let h = 2166136261;
@@ -18,15 +19,31 @@ const BASE_BY_CATEGORY = {
   verzorging: { price: 8, pack: null, unit: null },
 };
 
+/** Demo-EAN in de 200-reeks: die is gereserveerd voor intern gebruik en botst dus niet met echte artikelen. */
+function demoGtin(seedText) {
+  const body = `200${String(Math.floor(hash(seedText) * 1e9)).padStart(9, '0')}`.slice(0, 12);
+  return `${body}${checkDigit(body)}`;
+}
+
 export function mockOffer(shopId, shop, product, date = new Date()) {
   const base = BASE_BY_CATEGORY[product.category] ?? BASE_BY_CATEGORY.verzorging;
   const day = date.toISOString().slice(0, 10);
   const seed = hash(`${product.id}|${shopId}`);
   const drift = hash(`${product.id}|${shopId}|${day}`);
+
+  // De meeste winkels verkopen dezelfde verpakking (zelfde EAN); een van hen een grotere doos,
+  // en een ander vermeldt geen artikelnummer. Zo zijn alle verificatieniveaus zichtbaar.
+  const bigPackShop = seed > 0.5 ? 'bol' : 'babypark';
+  const noGtinShop = seed > 0.5 ? 'babypark' : 'bol';
+  const isBigPack = shopId === bigPackShop;
+  const standardPack = base.pack ? Math.round(base.pack * (0.75 + hash(product.id) * 0.5)) : null;
   const packSize = product.packSize
-    ?? (base.pack ? { amount: Math.round(base.pack * (0.7 + seed * 0.8)), unit: base.unit } : null);
+    ?? (standardPack ? { amount: isBigPack ? Math.round(standardPack * 1.8) : standardPack, unit: base.unit } : null);
   const scale = packSize && base.pack ? packSize.amount / base.pack : 1;
   const price = Math.round((base.price * scale * (0.82 + seed * 0.4) * (0.97 + drift * 0.08)) * 100) / 100;
+  const gtin = shopId === noGtinShop
+    ? null
+    : demoGtin(`${product.id}${isBigPack ? '|groot' : ''}`);
 
   const offer = {
     shop: shopId,
@@ -37,6 +54,9 @@ export function mockOffer(shopId, shop, product, date = new Date()) {
     inStock: drift > 0.05,
     title: `${product.name} (demo)`,
     packSize,
+    gtin,
+    sku: `DEMO-${shopId.toUpperCase()}-${String(Math.floor(seed * 100000)).padStart(5, '0')}`,
+    mpn: null,
     unitPrice: null,
     unitLabel: null,
     ok: true,

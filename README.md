@@ -6,6 +6,11 @@ Prijsvergelijker voor babyproducten: **luiers** (per maat en merk), **luierbroek
 - Prijzen worden **elke dag automatisch opgehaald** bij de webwinkels (GitHub Action).
 - De site vergelijkt op **stukprijs** — prijs per luier, per doekje of per 100 ml/100 g —
   want verpakkingen verschillen per winkel en dat maakt totaalprijzen onvergelijkbaar.
+- **Controle op artikelnummer (EAN/GTIN)**: per winkel wordt het artikelnummer van de
+  productpagina gelezen en tussen winkels vergeleken, zodat je zeker weet dat je appels met
+  appels vergelijkt.
+- **Luiervergelijker**: alle merken naast elkaar in één maat, op prijs per luier en per maand —
+  huismerk versus Pampers, ook als de pakken verschillende aantallen bevatten.
 - Elke prijs is een **directe link naar de webwinkel**.
 - Statische site: geen server, geen database, geen dependencies. Hosting kan gratis op GitHub Pages.
 
@@ -19,6 +24,7 @@ data/shops.json       welke winkels doorzocht worden (zoek-URL, patroon van prod
 scripts/fetch-prices.mjs   zoekt per winkel het product, leest de prijs van de productpagina
         |
         +--> data/resolved.json   cache: gevonden product-URL per product/winkel
+        +--> data/identity.json   artikelnummer (EAN/SKU) per product/winkel, met wijzigingen
         +--> data/history.json    prijs per dag (90 dagen), voor "laagste prijs in 30 dagen"
         +--> data/report.json     wat er mis ging tijdens de laatste ronde
         +--> site/data/prices.json   het bestand dat de website inleest
@@ -41,12 +47,56 @@ zelf publiceert voor Google Shopping.
 **Een prijs die niet gevonden of niet betrouwbaar herkend wordt, komt niet op de site.**
 Liever een winkel minder dan een verkeerde prijs.
 
+## Verificatie op artikelnummer
+
+Naam en maat zeggen niet genoeg: "Pampers Baby-Dry maat 4" bestaat in een pak van 82, een doos
+van 160 en een maandbox van 174. Daarom leest de ophaler ook het **EAN/GTIN-artikelnummer** en de
+**SKU** van de productpagina (uit `schema.org`, Open Graph of de specificatietabel), controleert
+het controlecijfer, en vergelijkt de nummers tussen winkels. Elke prijs krijgt een niveau:
+
+| Niveau | Betekenis | Op de site |
+| --- | --- | --- |
+| `exact` | artikelnummer komt overeen met de referentie | ✓ zelfde artikel |
+| `variant` | geldig nummer, maar aantoonbaar een ander artikel (meestal een andere doosgrootte) | andere verpakking |
+| `afwijkend` | nummer staat niet in de lijst die de catalogus voorschrijft | ander artikel |
+| `onbekend` | geen nummer gevonden, of geen tweede winkel om mee te vergelijken | EAN onbekend |
+
+De referentie komt uit `gtins` in de catalogus als je die invult, en anders uit **consensus**:
+het nummer waar minstens twee winkels het over eens zijn. Met de knop *Alleen bevestigd hetzelfde
+artikel* filter je de site op `exact`.
+
+Vul je `gtins` in, dan wordt er **streng** gecontroleerd: een winkel die een ander artikel op die
+pagina zet, valt af en er wordt automatisch opnieuw gezocht naar het juiste artikel. Zet
+`"strictGtin": false` om alleen te labelen zonder iets weg te gooien.
+
+Vastleggen gaat automatisch na een echte ronde:
+
+```bash
+npm run fetch                       # vult data/identity.json
+node scripts/pin-gtins.mjs          # laat zien wat er vastgelegd zou worden
+node scripts/pin-gtins.mjs --write  # schrijft de EANs in data/catalog.json
+```
+
+Verandert een winkel later stilletjes het artikel achter dezelfde URL, dan ziet de volgende ronde
+dat het EAN gewijzigd is, meldt dat in het rapport en in de samenvatting van de Action, en zet
+een waarschuwingsteken bij die prijs.
+
+## Luiervergelijker
+
+Naast de productweergave zit er een tweede weergave in die werkt zoals je van een
+luierprijsvergelijker verwacht: kies een **maat**, en alle merken komen onder elkaar te staan
+op **prijs per luier** — inclusief het bedrag **per maand** (gerekend met 150 luiers), een blok
+*goedkoopste per merk*, en dezelfde filters op voorraad en artikelnummer. Zo zie je in één
+oogopslag of het huismerk van 50 stuks echt goedkoper is dan een maandbox Pampers.
+
+De weergave is deelbaar via de URL, bijvoorbeeld `?view=luiers&maat=4&merk=Pampers,Kruidvat`.
+
 ## Aan de slag
 
 Node 20 of nieuwer, verder niets nodig.
 
 ```bash
-npm test                     # 38 tests (parsers, matching, robots.txt, hele ronde)
+npm test                     # 60 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
 npm run fetch:mock           # demoprijzen, zonder netwerkverkeer
 npm run serve                # site op http://localhost:8080
 ```
@@ -58,7 +108,8 @@ npm run fetch                          # alle ingeschakelde winkels
 node scripts/fetch-prices.mjs --only=kruidvat,etos
 node scripts/fetch-prices.mjs --product=bepanthen-baby-zalf-30g
 node scripts/fetch-prices.mjs --limit=5      # eerst even klein proberen
-npm run check-catalog                  # welk product wordt in welke winkel gevonden?
+npm run check-catalog                  # welk product wordt in welke winkel gevonden (met EAN)?
+node scripts/pin-gtins.mjs --write     # gevonden artikelnummers vastleggen in de catalogus
 node scripts/validate-catalog.mjs      # catalogus controleren zonder netwerk
 ```
 
@@ -87,6 +138,8 @@ Zet er een blok bij in `data/catalog.json`:
 | `match.none` | Woorden die de titel juist uitsluiten (zo houd je luiers en luierbroekjes uit elkaar). |
 | `match.packSize` | Verplichte verpakkingsgrootte, bijvoorbeeld `30` voor de tube van 30 gram. |
 | `size` | Luiermaat. De titel moet dan "maat 4" (of `size 4`) bevatten. |
+| `gtins` | Lijst met toegestane EAN-nummers. Ingevuld = strenge controle op artikelnummer. |
+| `strictGtin` | `false` zet die strenge controle uit; afwijkende artikelen worden dan alleen gemarkeerd. |
 | `unit` | `stuk`, `ml` of `g` — bepaalt hoe de stukprijs getoond wordt. |
 | `shops` | Optioneel: alleen deze winkels doorzoeken (bijvoorbeeld huismerken). |
 | `links` | Optioneel: een vaste product-URL per winkel, dan wordt er niet gezocht. |
@@ -156,5 +209,7 @@ verpakkingsgrootte en een link.
 - `site/data/prices.json` bevat nu **demoprijzen**; de eerste echte ronde overschrijft ze en de
   demo-melding op de site verdwijnt vanzelf.
 - Prijzen zijn een momentopname van één keer per dag. De prijs in de winkel is leidend.
+- Niet elke winkel publiceert een EAN. Zonder artikelnummer blijft de vergelijking op naam,
+  maat en verpakkingsgrootte staan — dat is dan zichtbaar als *EAN onbekend*.
 - Er wordt geen rekening gehouden met verzendkosten, kortingsacties bij meerdere stuks of
   winkelpassen.

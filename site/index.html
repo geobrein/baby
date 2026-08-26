@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Babyprijs — luiers en babyverzorging vergelijken</title>
-<meta name="description" content="Vergelijk dagelijks bijgewerkte prijzen van luiers, billendoekjes en babyverzorging zoals Bepanthen in Nederlandse webwinkels. Inclusief prijs per luier.">
+<meta name="description" content="Vergelijk dagelijks bijgewerkte prijzen van luiers, billendoekjes en babyverzorging zoals Bepanthen in Nederlandse webwinkels. Met prijs per luier en controle op EAN-artikelnummer.">
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🍼</text></svg>">
@@ -20,50 +20,87 @@
       </div>
     </div>
     <p class="updated" id="updated" aria-live="polite">Prijzen laden…</p>
+    <nav class="views" aria-label="Weergave">
+      <button type="button" class="view-tab" data-view="producten" aria-pressed="true">Alle producten</button>
+      <button type="button" class="view-tab" data-view="luiers" aria-pressed="false">Luiervergelijker</button>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="filters" aria-label="Filters">
-    <div class="filter-row">
-      <label class="search">
-        <span class="visually-hidden">Zoek een product</span>
-        <input type="search" id="q" placeholder="Zoek op product of merk, bijv. Bepanthen of Pampers maat 4" autocomplete="off">
-      </label>
-      <label class="sort">
-        <span class="visually-hidden">Sorteren</span>
-        <select id="sort">
-          <option value="unit">Sorteer op stukprijs</option>
-          <option value="price">Sorteer op totaalprijs</option>
-          <option value="name">Sorteer op naam</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="chips" id="categories" role="group" aria-label="Categorie"></div>
-    <div class="chips" id="sizes" role="group" aria-label="Maat"></div>
-    <div class="chips" id="brands" role="group" aria-label="Merk"></div>
-
-    <div class="filter-row secondary">
-      <label class="toggle"><input type="checkbox" id="instock"> Alleen op voorraad</label>
-      <button type="button" class="link-button" id="reset">Filters wissen</button>
-      <span class="count" id="count"></span>
-    </div>
-  </section>
-
   <p class="notice" id="demo-notice" hidden>
-    Dit zijn <strong>demoprijzen</strong>. Zodra de dagelijkse GitHub Action draait, staan hier echte winkelprijzen.
+    Dit zijn <strong>demoprijzen</strong>, inclusief verzonnen EAN-nummers in de 200-reeks.
+    Zodra de dagelijkse GitHub Action draait, staan hier echte winkelprijzen en echte artikelnummers.
   </p>
 
-  <div id="results" class="results"></div>
-  <p class="empty" id="empty" hidden>Geen producten gevonden met deze filters.</p>
+  <!-- Weergave 1: alle producten -->
+  <section id="view-producten">
+    <div class="filters" aria-label="Filters">
+      <div class="filter-row">
+        <label class="search">
+          <span class="visually-hidden">Zoek een product</span>
+          <input type="search" id="q" placeholder="Zoek op product of merk, bijv. Bepanthen of Pampers maat 4" autocomplete="off">
+        </label>
+        <label class="sort">
+          <span class="visually-hidden">Sorteren</span>
+          <select id="sort">
+            <option value="unit">Sorteer op stukprijs</option>
+            <option value="price">Sorteer op totaalprijs</option>
+            <option value="name">Sorteer op naam</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="chips" id="categories" role="group" aria-label="Categorie"></div>
+      <div class="chips" id="sizes" role="group" aria-label="Maat"></div>
+      <div class="chips" id="brands" role="group" aria-label="Merk"></div>
+
+      <div class="filter-row secondary">
+        <label class="toggle"><input type="checkbox" id="instock"> Alleen op voorraad</label>
+        <label class="toggle" title="Toont alleen winkels waarvan het EAN-artikelnummer overeenkomt, zodat je precies hetzelfde artikel vergelijkt.">
+          <input type="checkbox" id="exact"> Alleen bevestigd hetzelfde artikel
+        </label>
+        <button type="button" class="link-button" id="reset">Filters wissen</button>
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+
+    <div id="results" class="results"></div>
+    <p class="empty" id="empty" hidden>Geen producten gevonden met deze filters.</p>
+  </section>
+
+  <!-- Weergave 2: merken vergelijken per luiermaat -->
+  <section id="view-luiers" hidden>
+    <div class="filters" aria-label="Luiervergelijker">
+      <p class="intro">Alle merken naast elkaar in één maat, op prijs per luier. Zo zie je of het huismerk
+        echt goedkoper is dan Pampers — ook als de pakken verschillende aantallen bevatten.</p>
+      <div class="chips" id="c-categories" role="group" aria-label="Soort"></div>
+      <div class="chips" id="c-sizes" role="group" aria-label="Maat"></div>
+      <div class="chips" id="c-brands" role="group" aria-label="Merk"></div>
+      <div class="filter-row secondary">
+        <label class="toggle"><input type="checkbox" id="c-instock"> Alleen op voorraad</label>
+        <label class="toggle" title="Alleen aanbiedingen waarvan het EAN-artikelnummer bevestigd is.">
+          <input type="checkbox" id="c-exact"> Alleen bevestigde artikelnummers
+        </label>
+        <span class="count" id="c-count"></span>
+      </div>
+    </div>
+
+    <div id="c-summary" class="summary" hidden></div>
+    <div id="c-brandbest" class="brandbest"></div>
+    <div id="c-rows" class="ranking"></div>
+    <p class="empty" id="c-empty" hidden>Geen luiers gevonden in deze maat.</p>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
     <p>Prijzen worden elke dag automatisch opgehaald bij de webwinkels. Er kan altijd een prijswijziging tussen zitten:
       de prijs in de winkel is leidend. Klik op <em>Naar winkel</em> om de actuele prijs te controleren.</p>
-    <p class="muted">Geen commerciële samenwerking met de genoemde winkels. Vragen of een winkel toevoegen? Zie de README in de repository.</p>
+    <p>Waar de winkel een EAN-artikelnummer publiceert, vergelijken we dat tussen winkels. <strong>Zelfde artikel</strong>
+      betekent dat het artikelnummer overeenkomt; <strong>andere verpakking</strong> betekent hetzelfde product in een
+      andere doosgrootte — vergelijkbaar per luier, maar niet hetzelfde artikel.</p>
+    <p class="muted">Geen commerciële samenwerking met de genoemde winkels. Maandbedragen zijn gerekend met 150 luiers per maand.</p>
   </div>
 </footer>
 
