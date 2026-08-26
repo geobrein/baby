@@ -145,13 +145,32 @@ test('demomodus laat cache en historie met rust', async (t) => {
   await assert.rejects(fs.access(paths.identity));
 });
 
-test('run stopt met een duidelijke melding zonder actieve winkels', async (t) => {
+test('run stopt met een duidelijke melding bij een onbekende winkel', async (t) => {
   const { dir, paths } = await workspace();
   t.after(() => fs.rm(dir, { recursive: true, force: true }));
   await assert.rejects(
     run(parseArgs(['--only=onbekend']), { paths, log: () => {} }),
-    /Geen actieve winkels/,
+    /Geen winkel gevonden voor --only=onbekend/,
   );
+});
+
+test('zonder actieve winkels draait de ronde door op feeds en vaste URL\'s', async (t) => {
+  const { dir, paths } = await workspace();
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+
+  // Winkel uit, maar het product heeft een vastgelegde product-URL.
+  const shops = JSON.parse(await fs.readFile(paths.shops, 'utf8'));
+  shops.test.enabled = false;
+  await fs.writeFile(paths.shops, JSON.stringify(shops));
+
+  const catalog = JSON.parse(await fs.readFile(paths.catalog, 'utf8'));
+  catalog.products[0].links = { test: 'https://winkel.test/pampers-baby-dry-maat-4-160-luiers/p/112233' };
+  await fs.writeFile(paths.catalog, JSON.stringify(catalog));
+
+  const { payload, published } = await run(parseArgs([]), { paths, log: () => {}, fetcher: stubFetcher() });
+  assert.equal(published, true);
+  assert.equal(payload.products.length, 1, 'het product met een vaste URL doet gewoon mee');
+  assert.equal(payload.products[0].offers[0].price, 39.99);
 });
 
 test('een winkel die blijft weigeren wordt overgeslagen', async (t) => {

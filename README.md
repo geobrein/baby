@@ -101,7 +101,7 @@ De weergave is deelbaar via de URL, bijvoorbeeld `?view=luiers&maat=4&merk=Pampe
 Node 20 of nieuwer, verder niets nodig.
 
 ```bash
-npm test                     # 81 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
+npm test                     # 82 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
 npm run fetch:mock           # demoprijzen, zonder netwerkverkeer
 npm run serve                # site op http://localhost:8080
 ```
@@ -263,7 +263,7 @@ Zoeken via de zoekpagina van de winkel werkt niet vanaf GitHub Actions. Gemeten 
 
 | Winkel | robots.txt | Zoekpagina | Productpagina | Bereikbaar |
 | --- | --- | --- | --- | --- |
-| Babypark | leesbaar | verboden | toegestaan | ja (HTTP 200) |
+| Babypark | leesbaar | verboden | toegestaan | ja (HTTP 200), maar de productlijst wordt met JavaScript opgebouwd |
 | bol | leesbaar | verboden | toegestaan | homepage timeout |
 | Kruidvat | HTTP 403 | - | - | nee |
 | Trekpleister | HTTP 403 | - | - | nee |
@@ -275,11 +275,22 @@ Kort samengevat: Kruidvat, Trekpleister, Albert Heijn weren het verkeer met een 
 Etos en Jumbo antwoorden niet, en bol en Babypark verbieden de zoekpagina in hun
 robots.txt (daar houdt de ophaler zich aan) maar staan productpagina's wel toe.
 
-Daarop is het project aangepast. Kruidvat, Trekpleister en Etos staan nu **uit** in
-`data/shops.json` — die wachten op een feed. Voor Babypark wordt niet meer gezocht maar
-**gebladerd** via de categoriepagina, en bol staat klaar voor de feed of voor vaste
-product-URL's. Zie *Productfeeds instellen* hierboven en het kopje over bladeren bij
-*Een winkel toevoegen*.
+Bladeren via de categoriepagina is daarna ook geprobeerd, want dat mag wel van hun robots.txt.
+Bij Babypark levert dat 295 links op waarvan er **geen enkele naar een product wijst**: het
+overzicht wordt met JavaScript opgebouwd, dus in de HTML van de server staan alleen menu-items.
+
+Daarmee is automatisch ontdekken langs alle wegen dicht, en staan alle winkels **uit** in
+`data/shops.json`. Er zijn nog twee manieren om aan prijzen te komen, en de code ondersteunt
+ze allebei:
+
+1. **Een productfeed** — zie *Productfeeds instellen* hierboven. Dit is de hoofdroute.
+2. **Vaste product-URL's** via `links` in de catalogus. Een product met een vastgelegde URL
+   wordt opgehaald ook als de winkel verder uit staat: die URL is immers met de hand
+   gecontroleerd, er hoeft niet gezocht te worden. Controleer eerst met de workflow
+   *Winkels onderzoeken* (invoer `url`) of die pagina prijs en EAN prijsgeeft.
+
+Zolang geen van beide is ingesteld, doet de dagelijkse ronde niets en blijft de site staan
+zoals hij stond. Er wordt dan geen verkeer naar de winkels gestuurd.
 
 ## Beperkingen om te weten
 

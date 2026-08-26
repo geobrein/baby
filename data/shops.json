@@ -29,7 +29,7 @@
   "bol": {
     "name": "bol",
     "site": "https://www.bol.com",
-    "enabled": true,
+    "enabled": false,
     "delayMs": 4000,
     "searchUrl": "https://www.bol.com/nl/nl/s/?searchtext={q}",
     "productPathPattern": "^/nl/nl/p/[^/]+/\\d+",
@@ -40,11 +40,11 @@
   "babypark": {
     "name": "Babypark",
     "site": "https://www.babypark.nl",
-    "enabled": true,
+    "enabled": false,
     "delayMs": 3000,
     "searchUrl": "https://www.babypark.nl/catalogsearch/result/?q={q}",
     "productPathPattern": "\\.html$",
-    "note": "Zoeken is verboden in robots.txt; productpagina's en categoriepagina's zijn wel toegestaan, dus we bladeren.",
+    "note": "Uitgeschakeld: het productoverzicht wordt met JavaScript opgebouwd, dus in de HTML van de categoriepagina staan geen producten. Productpagina's zijn wel toegestaan: vul vaste URL's in via 'links' in de catalogus, of gebruik een affiliatefeed.",
     "discovery": "browse",
     "browseUrls": [
       "https://www.babypark.nl/verzorging/luiers.html"

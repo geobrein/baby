@@ -68,8 +68,14 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   if (args.limit) products = products.slice(0, args.limit);
   if (!products.length) throw new Error('Geen producten over na filteren');
 
-  const activeShops = Object.entries(shops).filter(([id, shop]) => (args.only ? args.only.includes(id) : shop.enabled !== false));
-  if (!activeShops.length) throw new Error('Geen actieve winkels; controleer data/shops.json of --only');
+  // In demomodus doen alle winkels mee: die ronde is er om de site te kunnen tonen.
+  const activeShops = Object.entries(shops).filter(([id, shop]) => {
+    if (args.only) return args.only.includes(id);
+    return args.mock || shop.enabled !== false;
+  });
+  if (!activeShops.length && args.only) {
+    throw new Error(`Geen winkel gevonden voor --only=${args.only.join(',')}`);
+  }
 
   const resolved = (await readJson(paths.resolved, {})) ?? {};
   const history = (await readJson(paths.history, {})) ?? {};
@@ -84,6 +90,9 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   const problems = [];
 
   log(`${products.length} producten x ${activeShops.length} winkels${args.mock ? ' (demo)' : ''}`);
+  if (!activeShops.length) {
+    log('Geen winkel staat aan; alleen productfeeds en vaste product-URL\'s doen mee.');
+  }
 
   // Officiele productfeeds gaan voor: die geven prijs, voorraad en EAN rechtstreeks.
   let feedsUsed = [];
@@ -102,6 +111,16 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
     }
   }
 
+  // Een product met een vastgelegde URL wordt opgehaald, ook als de winkel verder uit staat:
+  // die URL is handmatig gecontroleerd, er hoeft niet gezocht te worden.
+  const pinnedShops = new Set();
+  for (const product of products) {
+    for (const shopId of Object.keys(product.links ?? {})) {
+      if (shops[shopId] && !activeShops.some(([id]) => id === shopId)) pinnedShops.add(shopId);
+    }
+  }
+  for (const shopId of pinnedShops) activeShops.push([shopId, shops[shopId]]);
+
   // Winkels parallel, producten binnen een winkel netjes op volgorde.
   const budgetMs = (args.budgetMinutes ?? DEFAULT_BUDGET_MINUTES) * 60_000;
   const maxFailures = args.maxFailures ?? DEFAULT_MAX_FAILURES;
@@ -115,6 +134,8 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
     );
     for (const product of products) {
       if (Array.isArray(product.shops) && !product.shops.includes(shopId)) continue;
+      // Staat de winkel uit, dan tellen alleen producten met een vastgelegde URL.
+      if (shop.enabled === false && !product.links?.[shopId] && !args.only && !args.mock) continue;
       // Levert de feed van deze winkel dit product al, dan hoeft de pagina niet opgehaald.
       if (feedCovered.has(shopId) && (offersByProduct.get(product.id) ?? []).some((o) => o.shop === shopId)) continue;
 

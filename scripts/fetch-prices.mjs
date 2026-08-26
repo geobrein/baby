@@ -22,8 +22,12 @@ try {
   if (published) {
     console.log(`Geschreven: site/data/prices.json (${payload.updatedAt})`);
   } else if (!args.dryRun) {
-    console.error('Geen enkele prijs gevonden - de site is niet bijgewerkt. Zie data/report.json.');
-    process.exitCode = 1;
+    if (payload.stats.products === 0 || problems.length === 0) {
+      console.log('Er stond niets klaar om op te halen; de site is ongewijzigd gelaten.');
+    } else {
+      console.error('Geen enkele prijs gevonden - de site is niet bijgewerkt. Zie data/report.json.');
+      process.exitCode = 1;
+    }
   }
 } catch (err) {
   console.error(`Fout: ${err.message}`);
