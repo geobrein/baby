@@ -43,3 +43,35 @@ test('validateCatalog controleert de winkelconfiguratie', () => {
   const { errors } = validateCatalog({ products: [] }, { kapot: { name: 'Kapot', site: 'https://x.test', searchUrl: 'https://x.test/s' } });
   assert.ok(errors.some((e) => e.includes('{q}')));
 });
+
+test('validateFeeds controleert de feedconfiguratie', async () => {
+  const { validateFeeds } = await import('../scripts/lib/validate.mjs');
+  const shops = { bol: { name: 'bol' } };
+
+  assert.deepEqual(validateFeeds({ feeds: [] }, shops).errors, []);
+  assert.deepEqual(validateFeeds(undefined, shops).errors, []);
+
+  const { errors } = validateFeeds({
+    feeds: [
+      { id: 'a', shop: 'bol', urlEnv: 'FEED_A_URL' },
+      { id: 'a', shop: 'bol', urlEnv: 'FEED_A_URL' },
+      { id: 'b', shop: 'onbekend', urlEnv: 'FEED_B_URL' },
+      { id: 'c', shop: 'bol', urlEnv: 'https://feed.test/x.csv' },
+      { id: 'd', shop: 'bol' },
+      { id: 'e', shop: 'bol', urlEnv: 'FEED_E_URL', format: 'json' },
+    ],
+  }, shops);
+
+  assert.ok(errors.some((e) => e.includes('dubbele feed-id')));
+  assert.ok(errors.some((e) => e.includes('onbekende winkel')));
+  assert.ok(errors.some((e) => e.includes('secretnaam')));
+  assert.ok(errors.some((e) => e.includes("'urlEnv' ontbreekt")));
+  assert.ok(errors.some((e) => e.includes('onbekend formaat')));
+});
+
+test('de meegeleverde feedconfiguratie is geldig', async () => {
+  const { validateFeeds } = await import('../scripts/lib/validate.mjs');
+  const feeds = await readJson(paths.feeds);
+  const shops = await readJson(paths.shops);
+  assert.deepEqual(validateFeeds(feeds, shops).errors, []);
+});

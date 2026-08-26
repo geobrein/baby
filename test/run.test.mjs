@@ -21,6 +21,7 @@ async function workspace() {
   const paths = {
     catalog: path.join(dir, 'catalog.json'),
     shops: path.join(dir, 'shops.json'),
+    feeds: path.join(dir, 'feeds.json'),
     resolved: path.join(dir, 'resolved.json'),
     history: path.join(dir, 'history.json'),
     identity: path.join(dir, 'identity.json'),

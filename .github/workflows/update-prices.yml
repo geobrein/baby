@@ -39,6 +39,13 @@ jobs:
           node-version: '22'
 
       - name: Prijzen ophalen
+        env:
+          # Productfeeds van partnerprogramma's. Elk secret dat niet bestaat wordt
+          # gewoon overgeslagen; zet ze onder Settings > Secrets and variables > Actions.
+          FEED_BOL_URL: ${{ secrets.FEED_BOL_URL }}
+          FEED_KRUIDVAT_URL: ${{ secrets.FEED_KRUIDVAT_URL }}
+          FEED_ETOS_URL: ${{ secrets.FEED_ETOS_URL }}
+          FEED_BABYPARK_URL: ${{ secrets.FEED_BABYPARK_URL }}
         run: |
           # Het tijdbudget ligt onder de timeout van de job, zodat er altijd
           # resultaat weggeschreven en gecommit wordt.

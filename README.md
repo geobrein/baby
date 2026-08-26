@@ -18,10 +18,11 @@ Prijsvergelijker voor babyproducten: **luiers** (per maat en merk), **luierbroek
 
 ```
 data/catalog.json     welke producten je wilt volgen (naam, merk, maat, zoekterm, match-regels)
-data/shops.json       welke winkels doorzocht worden (zoek-URL, patroon van productlinks)
+data/shops.json       welke winkels bekeken worden (zoeken of bladeren, patroon van productlinks)
+data/feeds.json       welke productfeeds meedoen (URL staat in een repository-secret)
         |
         v
-scripts/fetch-prices.mjs   zoekt per winkel het product, leest de prijs van de productpagina
+scripts/fetch-prices.mjs   leest eerst de feeds, haalt daarna de resterende productpagina's op
         |
         +--> data/resolved.json   cache: gevonden product-URL per product/winkel
         +--> data/identity.json   artikelnummer (EAN/SKU) per product/winkel, met wijzigingen
@@ -33,7 +34,11 @@ scripts/fetch-prices.mjs   zoekt per winkel het product, leest de prijs van de p
 site/index.html + app.js   filtert, sorteert en linkt door naar de winkel
 ```
 
-Het ophalen gebeurt in twee stappen. De eerste keer wordt het product **gezocht** in de winkel;
+Prijzen komen uit twee bronnen. **Een officiele productfeed** gaat voor: die geeft prijs,
+voorraad, EAN en een deeplink rechtstreeks, en scheelt de winkel verkeer. Wat de feeds niet
+dekken wordt van de **productpagina** gelezen.
+
+Het ophalen van productpagina's gebeurt in twee stappen. De eerste keer wordt het product **gezocht** in de winkel;
 alleen zoekresultaten die door de match-regels komen (juist merk, juiste maat, juiste variant,
 juiste verpakkingsgrootte) worden geaccepteerd, en de productpagina wordt daarna nog een keer
 gecontroleerd op de echte titel. De gevonden URL komt in `data/resolved.json`, zodat de dagelijkse
@@ -96,7 +101,7 @@ De weergave is deelbaar via de URL, bijvoorbeeld `?view=luiers&maat=4&merk=Pampe
 Node 20 of nieuwer, verder niets nodig.
 
 ```bash
-npm test                     # 63 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
+npm test                     # 81 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
 npm run fetch:mock           # demoprijzen, zonder netwerkverkeer
 npm run serve                # site op http://localhost:8080
 ```
@@ -148,6 +153,41 @@ Zet er een blok bij in `data/catalog.json`:
 Controleer daarna met `node scripts/check-catalog.mjs --product=<id>` of het product in elke
 winkel gevonden wordt, en pas zo nodig `query` of `match` aan.
 
+## Productfeeds instellen
+
+Zo werken echte prijsvergelijkers, en het is de enige route die bij de meeste winkels open
+staat (zie *Wat de eerste echte ronde uitwees*). Je hebt er een partner- of affiliate-account
+voor nodig:
+
+| Winkel | Waar | Wat je krijgt |
+| --- | --- | --- |
+| bol | Partnerprogramma van bol | productfeed en API met prijs, voorraad, EAN, deeplink |
+| Kruidvat, Trekpleister | A.S. Watson via een affiliatenetwerk (Awin, Daisycon of TradeTracker) | productfeed |
+| Etos | via een affiliatenetwerk | productfeed |
+| Babypark | via een affiliatenetwerk | productfeed |
+
+Zodra je de feed-URL hebt (die bevat je persoonlijke sleutel):
+
+1. Ga in de repository naar **Settings → Secrets and variables → Actions → New repository secret**.
+2. Naam: `FEED_BOL_URL`, `FEED_KRUIDVAT_URL`, `FEED_ETOS_URL` of `FEED_BABYPARK_URL`.
+   Waarde: de volledige feed-URL.
+3. Klaar. De eerstvolgende ronde pakt de feed automatisch op; een feed zonder secret wordt
+   stilzwijgend overgeslagen.
+
+De feed-URL hoort **niet** in `data/feeds.json` — daar staat alleen de naam van het secret.
+CSV, TSV en XML worden herkend, streamend gelezen (feeds van honderden megabytes passen zo
+gewoon in het geheugen), en de gangbare veldnamen van Awin, Daisycon, TradeTracker en Google
+Shopping worden vanzelf begrepen. Wijkt een feed af, dan zet je in `data/feeds.json` een
+`mapping` met de juiste kolomnamen:
+
+```json
+{ "id": "eigen-feed", "shop": "bol", "urlEnv": "FEED_BOL_URL",
+  "mapping": { "price": ["consumentenprijs"], "url": ["klikurl"] } }
+```
+
+Rijen worden aan de catalogus gekoppeld op **EAN** als het product een `gtins`-lijst heeft, en
+anders op titel met dezelfde match-regels als bij het scrapen.
+
 ## Een winkel toevoegen
 
 In `data/shops.json`:
@@ -164,8 +204,20 @@ In `data/shops.json`:
 ```
 
 `productPathPattern` is een reguliere expressie op het **pad** van een link; daarmee worden
-productlinks uit de zoekresultatenpagina gevist. `delayMs` is de wachttijd tussen twee
+productlinks uit de resultatenpagina gevist. `delayMs` is de wachttijd tussen twee
 verzoeken aan dezelfde winkel.
+
+Verbiedt een winkel zoeken in robots.txt maar mag bladeren wel (zoals bij Babypark), zet dan
+`"discovery": "browse"` met daarbij de categoriepagina's:
+
+```json
+"discovery": "browse",
+"browseUrls": ["https://www.babypark.nl/verzorging/luiers.html"]
+```
+
+Die pagina's worden per ronde een keer opgehaald en door alle producten gedeeld. Welke
+categoriepagina's een winkel heeft, en of robots.txt ze toestaat, zie je met de workflow
+*Winkels onderzoeken* (invoer `links`).
 
 Albert Heijn en Jumbo staan meegeleverd maar **uitgeschakeld**: die sites weren geautomatiseerd
 verkeer actief. Zet ze alleen aan als je daar afspraken over hebt gemaakt. Zie ook
@@ -223,14 +275,11 @@ Kort samengevat: Kruidvat, Trekpleister, Albert Heijn weren het verkeer met een 
 Etos en Jumbo antwoorden niet, en bol en Babypark verbieden de zoekpagina in hun
 robots.txt (daar houdt de ophaler zich aan) maar staan productpagina's wel toe.
 
-Daarmee zijn er nog twee begaanbare wegen:
-
-1. **Officiele feeds of API's.** Zo werken echte prijsvergelijkers: via het
-   partnerprogramma van bol of een affiliatenetwerk (Awin, Daisycon, TradeTracker) krijg
-   je een productfeed met prijs, voorraad, EAN en een deeplink. Stabiel, toegestaan, en
-   de EAN-verificatie in dit project wordt er alleen maar sterker van.
-2. **Vaste product-URL's** via `links` in de catalogus, voor winkels die productpagina's
-   toestaan. Dan wordt er niet gezocht en blijft het bij het ophalen van die ene pagina.
+Daarop is het project aangepast. Kruidvat, Trekpleister en Etos staan nu **uit** in
+`data/shops.json` — die wachten op een feed. Voor Babypark wordt niet meer gezocht maar
+**gebladerd** via de categoriepagina, en bol staat klaar voor de feed of voor vaste
+product-URL's. Zie *Productfeeds instellen* hierboven en het kopje over bladeren bij
+*Een winkel toevoegen*.
 
 ## Beperkingen om te weten
 

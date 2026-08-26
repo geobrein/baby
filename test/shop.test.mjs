@@ -89,7 +89,7 @@ test('fetchOffer meldt netjes dat er niets gevonden is', async () => {
   const offer = await fetchOffer(testFetcher([]), 'test', shop, onbekend, null);
   assert.equal(offer.ok, false);
   assert.equal(offer.price, null);
-  assert.match(offer.error, /zoekresultaat|overeen/);
+  assert.match(offer.error, /geen passend resultaat|kwamen niet overeen/);
 });
 
 test('Fetcher weigert URLs die robots.txt verbiedt', async () => {
@@ -108,4 +108,39 @@ test('Fetcher weigert URLs die robots.txt verbiedt', async () => {
   assert.match(blocked.error, /robots/);
   const allowed = await fetcher.text('https://winkel.test/product/p/1');
   assert.equal(allowed.ok, true);
+});
+
+test('bladeren via categoriepagina vervangt zoeken waar dat niet mag', async () => {
+  const bladerShop = {
+    ...shop,
+    discovery: 'browse',
+    searchUrl: 'https://winkel.test/search?text={q}',
+    browseUrls: ['https://winkel.test/luiers.html'],
+  };
+  const log = [];
+  const fetcher = new Fetcher({
+    respectRobots: false,
+    defaultDelayMs: 0,
+    maxRetries: 0,
+    fetch: async (url) => {
+      log.push(url);
+      if (url === 'https://winkel.test/luiers.html') {
+        return { ok: true, status: 200, url, text: async () => fixture('search-results.html'), headers: { get: () => null } };
+      }
+      const name = PAGES[url];
+      if (!name) return { ok: false, status: 404, url, text: async () => '', headers: { get: () => null } };
+      return { ok: true, status: 200, url, text: async () => fixture(name), headers: { get: () => null } };
+    },
+  });
+
+  const browseCache = new Map();
+  const offer = await fetchOffer(fetcher, 'test', bladerShop, product, null, { browseCache });
+  assert.equal(offer.ok, true);
+  assert.equal(offer.url, 'https://winkel.test/pampers-baby-dry-maat-4-160-luiers/p/112233');
+  assert.ok(!log.some((u) => u.includes('/search?')), 'de zoekpagina wordt niet aangeroepen');
+
+  // Tweede product hergebruikt de al opgehaalde categoriepagina.
+  const voor = log.filter((u) => u.includes('luiers.html')).length;
+  await fetchOffer(fetcher, 'test', bladerShop, product, null, { browseCache });
+  assert.equal(log.filter((u) => u.includes('luiers.html')).length, voor, 'categoriepagina wordt hergebruikt');
 });

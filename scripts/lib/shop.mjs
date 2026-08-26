@@ -79,23 +79,51 @@ function pickTitle(anchorText, titleAttr, url) {
   return options.sort((a, b) => b.length - a.length)[0] ?? fromSlug;
 }
 
-/** Zoekt het product in een winkel en geeft de beste product-URL terug. */
-export async function resolveProductUrl(fetcher, shopId, shop, product, { maxChecks = 3 } = {}) {
-  if (!shop.searchUrl) return { url: null, error: 'winkel heeft geen zoek-URL' };
-  const query = product.queries?.[shopId] ?? product.query ?? product.name;
-  const searchUrl = shop.searchUrl.replace('{q}', encodeURIComponent(query));
-  const res = await fetcher.text(searchUrl, { delayMs: shop.delayMs });
-  if (!res.ok) return { url: null, error: `zoeken mislukt (${res.error})` };
+/**
+ * Haalt de categoriepagina's van een winkel op, elk hooguit een keer per ronde.
+ * Nodig voor winkels die hun zoekpagina in robots.txt verbieden maar wel laten bladeren.
+ */
+export async function loadBrowsePages(fetcher, shop, cache = new Map()) {
+  const pages = [];
+  for (const url of shop.browseUrls ?? []) {
+    if (!cache.has(url)) cache.set(url, await fetcher.text(url, { delayMs: shop.delayMs }));
+    const res = cache.get(url);
+    if (res.ok) pages.push(res);
+  }
+  return pages;
+}
 
-  const candidates = extractCandidates(res.body, shop, res.url);
-  const ranked = candidates
+/** Zoekt het product in een winkel en geeft de beste product-URL terug. */
+export async function resolveProductUrl(fetcher, shopId, shop, product, { maxChecks = 3, browseCache } = {}) {
+  const candidates = [];
+  const errors = [];
+
+  // Bladeren via categoriepagina's waar zoeken niet mag of niet werkt.
+  if (shop.browseUrls?.length) {
+    const pages = await loadBrowsePages(fetcher, shop, browseCache ?? new Map());
+    if (!pages.length) errors.push('categoriepagina niet op te halen');
+    for (const page of pages) candidates.push(...extractCandidates(page.body, shop, page.url));
+  }
+
+  if (!candidates.length && shop.searchUrl && shop.discovery !== 'browse') {
+    const query = product.queries?.[shopId] ?? product.query ?? product.name;
+    const searchUrl = shop.searchUrl.replace('{q}', encodeURIComponent(query));
+    const res = await fetcher.text(searchUrl, { delayMs: shop.delayMs });
+    if (res.ok) candidates.push(...extractCandidates(res.body, shop, res.url));
+    else errors.push(`zoeken mislukt (${res.error})`);
+  }
+
+  if (!candidates.length) {
+    return { url: null, error: errors.join('; ') || 'geen manier om producten te vinden' };
+  }
+  const ranked = dedupe(candidates)
     .map((c) => ({ ...c, ...scoreCandidate(c.title, product) }))
     .filter((c) => c.ok)
     .sort((a, b) => b.score - a.score)
     .slice(0, maxChecks);
 
   if (!ranked.length) {
-    return { url: null, error: `geen passend zoekresultaat (${candidates.length} links bekeken)` };
+    return { url: null, error: `geen passend resultaat (${candidates.length} links bekeken)` };
   }
   // Bevestig op de productpagina zelf: de echte titel en het EAN zijn betrouwbaarder dan een slug.
   let lastReason = null;
@@ -110,14 +138,23 @@ export async function resolveProductUrl(fetcher, shopId, shop, product, { maxChe
     }
     if (!identity.ok) lastReason = identity.reason;
   }
-  return { url: null, error: lastReason ?? 'zoekresultaten kwamen niet overeen met het product' };
+  return { url: null, error: lastReason ?? 'gevonden pagina\'s kwamen niet overeen met het product' };
+}
+
+function dedupe(candidates) {
+  const byUrl = new Map();
+  for (const candidate of candidates) {
+    const existing = byUrl.get(candidate.url);
+    if (!existing || candidate.title.length > existing.title.length) byUrl.set(candidate.url, candidate);
+  }
+  return [...byUrl.values()];
 }
 
 /**
  * Haalt de actuele aanbieding op: gebruikt een bekende URL, zoekt opnieuw als die niet klopt.
  * @returns {Promise<object>} offer
  */
-export async function fetchOffer(fetcher, shopId, shop, product, knownUrl) {
+export async function fetchOffer(fetcher, shopId, shop, product, knownUrl, { browseCache } = {}) {
   const offer = {
     shop: shopId,
     shopName: shop.name,
@@ -158,7 +195,7 @@ export async function fetchOffer(fetcher, shopId, shop, product, knownUrl) {
   }
 
   if (!info) {
-    const resolved = await resolveProductUrl(fetcher, shopId, shop, product);
+    const resolved = await resolveProductUrl(fetcher, shopId, shop, product, { browseCache });
     if (resolved.url) {
       offer.url = resolved.url;
       info = resolved.page ?? null;

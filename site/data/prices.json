@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-26T06:57:08.974Z",
+  "updatedAt": "2026-08-26T10:47:01.543Z",
   "mock": true,
   "categories": [
     {
@@ -20,14 +20,6 @@
     }
   ],
   "shops": {
-    "trekpleister": {
-      "name": "Trekpleister",
-      "site": "https://www.trekpleister.nl"
-    },
-    "etos": {
-      "name": "Etos",
-      "site": "https://www.etos.nl"
-    },
     "babypark": {
       "name": "Babypark",
       "site": "https://www.babypark.nl"
@@ -35,10 +27,6 @@
     "bol": {
       "name": "bol",
       "site": "https://www.bol.com"
-    },
-    "kruidvat": {
-      "name": "Kruidvat",
-      "site": "https://www.kruidvat.nl"
     }
   },
   "products": [
@@ -50,50 +38,14 @@
       "size": "3",
       "weight": "6-10 kg",
       "unit": "stuk",
-      "bestPrice": 20.17,
-      "bestUnitPrice": 0.1801,
+      "bestPrice": 43.3,
+      "bestUnitPrice": 0.2144,
       "unitLabel": "per stuk",
-      "gtin": "2007473384123",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 20.17,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 25.19,
       "offers": [
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
-          "price": 20.17,
-          "unitPrice": 0.1801,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 112,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 3 (demo)",
-          "gtin": "2007473384123",
-          "sku": "DEMO-TREKPLEISTER-03025",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
-          "price": 21.92,
-          "unitPrice": 0.1957,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 112,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 3 (demo)",
-          "gtin": "2007473384123",
-          "sku": "DEMO-ETOS-21113",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "babypark",
           "shopName": "Babypark",
@@ -105,11 +57,12 @@
             "amount": 202,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 3 (demo)",
           "gtin": "2006770077332",
           "sku": "DEMO-BABYPARK-27058",
-          "verification": "variant",
+          "verification": "onbekend",
           "gtinChanged": false
         },
         {
@@ -123,29 +76,12 @@
             "amount": 112,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 3 (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-49961",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%203%20luiers",
-          "price": 25.54,
-          "unitPrice": 0.228,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 112,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 3 (demo)",
-          "gtin": "2007473384123",
-          "sku": "DEMO-KRUIDVAT-46519",
-          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -158,32 +94,14 @@
       "size": "4",
       "weight": "9-14 kg",
       "unit": "stuk",
-      "bestPrice": 22.5,
-      "bestUnitPrice": 0.1974,
+      "bestPrice": 23.38,
+      "bestUnitPrice": 0.2051,
       "unitLabel": "per stuk",
-      "gtin": "2007746828194",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 22.5,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 23.38,
       "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
-          "price": 22.5,
-          "unitPrice": 0.1974,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 114,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 4 (demo)",
-          "gtin": "2007746828194",
-          "sku": "DEMO-KRUIDVAT-17604",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -195,29 +113,12 @@
             "amount": 114,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 4 (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-28504",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
-          "price": 23.44,
-          "unitPrice": 0.2056,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 114,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 4 (demo)",
-          "gtin": "2007746828194",
-          "sku": "DEMO-TREKPLEISTER-28810",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -231,29 +132,12 @@
             "amount": 205,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 4 (demo)",
           "gtin": "2005268928811",
           "sku": "DEMO-BABYPARK-31340",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%204%20luiers",
-          "price": 23.53,
-          "unitPrice": 0.2064,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 114,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 4 (demo)",
-          "gtin": "2007746828194",
-          "sku": "DEMO-ETOS-30881",
-          "verification": "exact",
+          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -266,50 +150,14 @@
       "size": "5",
       "weight": "11-16 kg",
       "unit": "stuk",
-      "bestPrice": 21.59,
-      "bestUnitPrice": 0.1894,
+      "bestPrice": 22.88,
+      "bestUnitPrice": 0.2007,
       "unitLabel": "per stuk",
-      "gtin": "2007707764752",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 21.59,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 22.88,
       "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
-          "price": 21.59,
-          "unitPrice": 0.1894,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 114,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 5 (demo)",
-          "gtin": "2007707764752",
-          "sku": "DEMO-ETOS-07927",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
-          "price": 22.15,
-          "unitPrice": 0.1943,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 114,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 5 (demo)",
-          "gtin": "2007707764752",
-          "sku": "DEMO-TREKPLEISTER-13779",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -321,29 +169,12 @@
             "amount": 114,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 5 (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-14153",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%205%20luiers",
-          "price": 24.46,
-          "unitPrice": 0.2146,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 114,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 5 (demo)",
-          "gtin": "2007707764752",
-          "sku": "DEMO-KRUIDVAT-30251",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -357,6 +188,7 @@
             "amount": 114,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 5 (demo)",
           "gtin": null,
@@ -374,50 +206,14 @@
       "size": "6",
       "weight": "13+ kg",
       "unit": "stuk",
-      "bestPrice": 24.59,
-      "bestUnitPrice": 0.2176,
+      "bestPrice": 28.37,
+      "bestUnitPrice": 0.2511,
       "unitLabel": "per stuk",
-      "gtin": "2007668701315",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 24.59,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 28.37,
       "offers": [
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
-          "price": 24.59,
-          "unitPrice": 0.2176,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 113,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 6 (demo)",
-          "gtin": "2007668701315",
-          "sku": "DEMO-TREKPLEISTER-32559",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
-          "price": 24.75,
-          "unitPrice": 0.219,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 113,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 6 (demo)",
-          "gtin": "2007668701315",
-          "sku": "DEMO-ETOS-49949",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "babypark",
           "shopName": "Babypark",
@@ -429,6 +225,7 @@
             "amount": 113,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 6 (demo)",
           "gtin": null,
@@ -447,29 +244,12 @@
             "amount": 203,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry maat 6 (demo)",
           "gtin": "2006546640524",
           "sku": "DEMO-BOL-79901",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20maat%206%20luiers",
-          "price": 29.64,
-          "unitPrice": 0.2623,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 113,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry maat 6 (demo)",
-          "gtin": "2007668701315",
-          "sku": "DEMO-KRUIDVAT-95265",
-          "verification": "exact",
+          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -485,29 +265,11 @@
       "bestPrice": 27.06,
       "bestUnitPrice": 0.22,
       "unitLabel": "per stuk",
-      "gtin": "2009610667724",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
       "lowest30": 27.06,
       "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
-          "price": 27.06,
-          "unitPrice": 0.22,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 123,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 1 (demo)",
-          "gtin": "2009610667724",
-          "sku": "DEMO-KRUIDVAT-47427",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -519,6 +281,7 @@
             "amount": 123,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 1 (demo)",
           "gtin": null,
@@ -537,47 +300,12 @@
             "amount": 123,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 1 (demo)",
           "gtin": null,
           "sku": "DEMO-BABYPARK-62589",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
-          "price": 29.18,
-          "unitPrice": 0.2372,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 123,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 1 (demo)",
-          "gtin": "2009610667724",
-          "sku": "DEMO-TREKPLEISTER-63715",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%201%20luiers",
-          "price": 31.18,
-          "unitPrice": 0.2535,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 123,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 1 (demo)",
-          "gtin": "2009610667724",
-          "sku": "DEMO-ETOS-89125",
-          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -590,32 +318,14 @@
       "size": "2",
       "weight": "4-8 kg",
       "unit": "stuk",
-      "bestPrice": 23.76,
-      "bestUnitPrice": 0.1948,
+      "bestPrice": 46.14,
+      "bestUnitPrice": 0.2097,
       "unitLabel": "per stuk",
-      "gtin": "2009493477410",
+      "gtin": "2002823005475",
       "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 23.76,
+      "verifiedOffers": 2,
+      "lowest30": 46.14,
       "offers": [
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
-          "price": 23.76,
-          "unitPrice": 0.1948,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 122,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 2 (demo)",
-          "gtin": "2009493477410",
-          "sku": "DEMO-TREKPLEISTER-21963",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "babypark",
           "shopName": "Babypark",
@@ -627,46 +337,11 @@
             "amount": 220,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 2 (demo)",
           "gtin": "2002823005475",
           "sku": "DEMO-BABYPARK-38277",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
-          "price": 29.11,
-          "unitPrice": 0.2386,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 122,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 2 (demo)",
-          "gtin": "2009493477410",
-          "sku": "DEMO-ETOS-63055",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%202%20luiers",
-          "price": 32.17,
-          "unitPrice": 0.2637,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 122,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 2 (demo)",
-          "gtin": "2009493477410",
-          "sku": "DEMO-KRUIDVAT-92551",
           "verification": "exact",
           "gtinChanged": false
         },
@@ -681,11 +356,12 @@
             "amount": 220,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 2 (demo)",
           "gtin": "2002823005475",
           "sku": "DEMO-BOL-87672",
-          "verification": "variant",
+          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -698,32 +374,14 @@
       "size": "3",
       "weight": "6-10 kg",
       "unit": "stuk",
-      "bestPrice": 27.12,
-      "bestUnitPrice": 0.2205,
+      "bestPrice": 28.56,
+      "bestUnitPrice": 0.2322,
       "unitLabel": "per stuk",
-      "gtin": "2009532540853",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 27.12,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 28.56,
       "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
-          "price": 27.12,
-          "unitPrice": 0.2205,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 123,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 3 (demo)",
-          "gtin": "2009532540853",
-          "sku": "DEMO-ETOS-47532",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "babypark",
           "shopName": "Babypark",
@@ -735,47 +393,12 @@
             "amount": 123,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 3 (demo)",
           "gtin": null,
           "sku": "DEMO-BABYPARK-58454",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
-          "price": 28.62,
-          "unitPrice": 0.2327,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 123,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 3 (demo)",
-          "gtin": "2009532540853",
-          "sku": "DEMO-KRUIDVAT-52329",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%203%20luiers",
-          "price": 29.6,
-          "unitPrice": 0.2407,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 123,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 3 (demo)",
-          "gtin": "2009532540853",
-          "sku": "DEMO-TREKPLEISTER-73073",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -789,11 +412,12 @@
             "amount": 221,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 3 (demo)",
           "gtin": "2008270018020",
           "sku": "DEMO-BOL-87311",
-          "verification": "variant",
+          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -809,10 +433,10 @@
       "bestPrice": 40.65,
       "bestUnitPrice": 0.1848,
       "unitLabel": "per stuk",
-      "gtin": "2009415350531",
+      "gtin": "2000851961350",
       "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 25.13,
+      "verifiedOffers": 2,
+      "lowest30": 40.65,
       "offers": [
         {
           "shop": "babypark",
@@ -825,64 +449,11 @@
             "amount": 220,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 4 (demo)",
           "gtin": "2000851961350",
           "sku": "DEMO-BABYPARK-02236",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
-          "price": 25.13,
-          "unitPrice": 0.206,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 122,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 4 (demo)",
-          "gtin": "2009415350531",
-          "sku": "DEMO-ETOS-19058",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
-          "price": 25.77,
-          "unitPrice": 0.2112,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 122,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 4 (demo)",
-          "gtin": "2009415350531",
-          "sku": "DEMO-KRUIDVAT-39550",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Premium%20Protection%20maat%204%20luiers",
-          "price": 30.38,
-          "unitPrice": 0.249,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 122,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Premium Protection maat 4 (demo)",
-          "gtin": "2009415350531",
-          "sku": "DEMO-TREKPLEISTER-65954",
           "verification": "exact",
           "gtinChanged": false
         },
@@ -897,11 +468,12 @@
             "amount": 220,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Premium Protection maat 4 (demo)",
           "gtin": "2000851961350",
           "sku": "DEMO-BOL-88189",
-          "verification": "variant",
+          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -917,10 +489,10 @@
       "bestPrice": 39.26,
       "bestUnitPrice": 0.2024,
       "unitLabel": "per stuk",
-      "gtin": "2006621051665",
+      "gtin": "2000022330749",
       "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 26.93,
+      "verifiedOffers": 2,
+      "lowest30": 39.26,
       "offers": [
         {
           "shop": "babypark",
@@ -933,28 +505,11 @@
             "amount": 194,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Harmonie maat 3 (demo)",
           "gtin": "2000022330749",
           "sku": "DEMO-BABYPARK-27773",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
-          "price": 26.93,
-          "unitPrice": 0.2494,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 108,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Harmonie maat 3 (demo)",
-          "gtin": "2006621051665",
-          "sku": "DEMO-KRUIDVAT-70891",
           "verification": "exact",
           "gtinChanged": false
         },
@@ -969,119 +524,12 @@
             "amount": 194,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Harmonie maat 3 (demo)",
           "gtin": "2000022330749",
           "sku": "DEMO-BOL-74973",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
-          "price": 28.69,
-          "unitPrice": 0.2656,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 108,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Harmonie maat 3 (demo)",
-          "gtin": "2006621051665",
-          "sku": "DEMO-TREKPLEISTER-88392",
           "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Harmonie%20maat%203%20luiers",
-          "price": 29.09,
-          "unitPrice": 0.2694,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 108,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Harmonie maat 3 (demo)",
-          "gtin": "2006621051665",
-          "sku": "DEMO-ETOS-98391",
-          "verification": "exact",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "kruidvat-luiers-4",
-      "name": "Kruidvat luiers maat 4",
-      "brand": "Kruidvat",
-      "category": "luiers",
-      "size": "4",
-      "weight": "9-14 kg",
-      "unit": "stuk",
-      "bestPrice": 18.63,
-      "bestUnitPrice": 0.2003,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 18.63,
-      "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Kruidvat%20luiers%20maat%204",
-          "price": 18.63,
-          "unitPrice": 0.2003,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 93,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Kruidvat luiers maat 4 (demo)",
-          "gtin": "2003611160932",
-          "sku": "DEMO-KRUIDVAT-13179",
-          "verification": "onbekend",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "etos-luiers-4",
-      "name": "Etos luiers maat 4",
-      "brand": "Etos",
-      "category": "luiers",
-      "size": "4",
-      "weight": "9-14 kg",
-      "unit": "stuk",
-      "bestPrice": 17.9,
-      "bestUnitPrice": 0.2295,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 17.9,
-      "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Etos%20luiers%20maat%204",
-          "price": 17.9,
-          "unitPrice": 0.2295,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 78,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Etos luiers maat 4 (demo)",
-          "gtin": "2000513968253",
-          "sku": "DEMO-ETOS-44508",
-          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -1097,10 +545,10 @@
       "bestPrice": 41.78,
       "bestUnitPrice": 0.2089,
       "unitLabel": "per stuk",
-      "gtin": "2007207188263",
+      "gtin": "2005473208272",
       "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 24.46,
+      "verifiedOffers": 2,
+      "lowest30": 41.78,
       "offers": [
         {
           "shop": "babypark",
@@ -1113,28 +561,11 @@
             "amount": 200,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Naty eco luiers maat 4 (demo)",
           "gtin": "2005473208272",
           "sku": "DEMO-BABYPARK-38235",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Naty%20luiers%20maat%204",
-          "price": 26.99,
-          "unitPrice": 0.2432,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 111,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Naty eco luiers maat 4 (demo)",
-          "gtin": "2007207188263",
-          "sku": "DEMO-KRUIDVAT-72336",
           "verification": "exact",
           "gtinChanged": false
         },
@@ -1149,46 +580,11 @@
             "amount": 200,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Naty eco luiers maat 4 (demo)",
           "gtin": "2005473208272",
           "sku": "DEMO-BOL-65136",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Naty%20luiers%20maat%204",
-          "price": 29.32,
-          "unitPrice": 0.2641,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 111,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Naty eco luiers maat 4 (demo)",
-          "gtin": "2007207188263",
-          "sku": "DEMO-ETOS-99792",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Naty%20luiers%20maat%204",
-          "price": 24.46,
-          "unitPrice": 0.2204,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 111,
-            "unit": "stuk"
-          },
-          "inStock": false,
-          "title": "Naty eco luiers maat 4 (demo)",
-          "gtin": "2007207188263",
-          "sku": "DEMO-TREKPLEISTER-53070",
           "verification": "exact",
           "gtinChanged": false
         }
@@ -1202,32 +598,14 @@
       "size": "4",
       "weight": "9-15 kg",
       "unit": "stuk",
-      "bestPrice": 20.75,
-      "bestUnitPrice": 0.2184,
+      "bestPrice": 38.39,
+      "bestUnitPrice": 0.2245,
       "unitLabel": "per stuk",
-      "gtin": "2009924581570",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 20.75,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 22.17,
       "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
-          "price": 20.75,
-          "unitPrice": 0.2184,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 95,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry Pants maat 4 (demo)",
-          "gtin": "2009924581570",
-          "sku": "DEMO-ETOS-06999",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "babypark",
           "shopName": "Babypark",
@@ -1239,29 +617,12 @@
             "amount": 171,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry Pants maat 4 (demo)",
           "gtin": "2003698390239",
           "sku": "DEMO-BABYPARK-00392",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
-          "price": 21.48,
-          "unitPrice": 0.2261,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 95,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry Pants maat 4 (demo)",
-          "gtin": "2009924581570",
-          "sku": "DEMO-TREKPLEISTER-08512",
-          "verification": "exact",
+          "verification": "onbekend",
           "gtinChanged": false
         },
         {
@@ -1275,29 +636,12 @@
             "amount": 95,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry Pants maat 4 (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-21627",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%204",
-          "price": 27.86,
-          "unitPrice": 0.2933,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 95,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry Pants maat 4 (demo)",
-          "gtin": "2009924581570",
-          "sku": "DEMO-KRUIDVAT-61385",
-          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -1310,32 +654,14 @@
       "size": "5",
       "weight": "12-17 kg",
       "unit": "stuk",
-      "bestPrice": 23.54,
-      "bestUnitPrice": 0.2478,
+      "bestPrice": 24.76,
+      "bestUnitPrice": 0.2606,
       "unitLabel": "per stuk",
-      "gtin": "2009885518134",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 23.54,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 24.76,
       "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
-          "price": 23.54,
-          "unitPrice": 0.2478,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 95,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry Pants maat 5 (demo)",
-          "gtin": "2009885518134",
-          "sku": "DEMO-ETOS-22521",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -1347,29 +673,12 @@
             "amount": 95,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry Pants maat 5 (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-47229",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
-          "price": 25.78,
-          "unitPrice": 0.2714,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 95,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry Pants maat 5 (demo)",
-          "gtin": "2009885518134",
-          "sku": "DEMO-TREKPLEISTER-55464",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -1383,29 +692,12 @@
             "amount": 171,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Baby-Dry Pants maat 5 (demo)",
           "gtin": "2005950162905",
           "sku": "DEMO-BABYPARK-47707",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Baby-Dry%20Pants%20maat%205",
-          "price": 29.79,
-          "unitPrice": 0.3136,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 95,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Baby-Dry Pants maat 5 (demo)",
-          "gtin": "2009885518134",
-          "sku": "DEMO-KRUIDVAT-91134",
-          "verification": "exact",
+          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -1421,9 +713,9 @@
       "bestPrice": 8.42,
       "bestUnitPrice": 0.0252,
       "unitLabel": "per stuk",
-      "gtin": "2007243761093",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
       "lowest30": 8.42,
       "offers": [
         {
@@ -1437,47 +729,12 @@
             "amount": 334,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Sensitive billendoekjes (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-05742",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
-          "price": 9.35,
-          "unitPrice": 0.028,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 334,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Sensitive billendoekjes (demo)",
-          "gtin": "2007243761093",
-          "sku": "DEMO-KRUIDVAT-27905",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
-          "price": 9.6,
-          "unitPrice": 0.0287,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 334,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Sensitive billendoekjes (demo)",
-          "gtin": "2007243761093",
-          "sku": "DEMO-ETOS-33887",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -1491,29 +748,12 @@
             "amount": 334,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Pampers Sensitive billendoekjes (demo)",
           "gtin": null,
           "sku": "DEMO-BABYPARK-63119",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Pampers%20Sensitive%20billendoekjes",
-          "price": 11.18,
-          "unitPrice": 0.0335,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 334,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Pampers Sensitive billendoekjes (demo)",
-          "gtin": "2007243761093",
-          "sku": "DEMO-TREKPLEISTER-61729",
-          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -1529,9 +769,9 @@
       "bestPrice": 5.8,
       "bestUnitPrice": 0.0254,
       "unitLabel": "per stuk",
-      "gtin": "2000177075106",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
       "lowest30": 5.8,
       "offers": [
         {
@@ -1545,47 +785,12 @@
             "amount": 228,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "WaterWipes billendoekjes (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-03733",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=WaterWipes%20billendoekjes",
-          "price": 5.95,
-          "unitPrice": 0.0261,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 228,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "WaterWipes billendoekjes (demo)",
-          "gtin": "2000177075106",
-          "sku": "DEMO-KRUIDVAT-03602",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=WaterWipes%20billendoekjes",
-          "price": 6.42,
-          "unitPrice": 0.0282,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 228,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "WaterWipes billendoekjes (demo)",
-          "gtin": "2000177075106",
-          "sku": "DEMO-ETOS-28534",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -1599,64 +804,11 @@
             "amount": 410,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "WaterWipes billendoekjes (demo)",
           "gtin": "2007672558172",
           "sku": "DEMO-BABYPARK-41024",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=WaterWipes%20billendoekjes",
-          "price": 7.75,
-          "unitPrice": 0.034,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 228,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "WaterWipes billendoekjes (demo)",
-          "gtin": "2000177075106",
-          "sku": "DEMO-TREKPLEISTER-80912",
-          "verification": "exact",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "kruidvat-sensitive-billendoekjes",
-      "name": "Kruidvat Sensitive billendoekjes",
-      "brand": "Kruidvat",
-      "category": "billendoekjes",
-      "size": null,
-      "weight": null,
-      "unit": "stuk",
-      "bestPrice": 7.71,
-      "bestUnitPrice": 0.0277,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 7.71,
-      "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Kruidvat%20sensitive%20billendoekjes",
-          "price": 7.71,
-          "unitPrice": 0.0277,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 278,
-            "unit": "stuk"
-          },
-          "inStock": false,
-          "title": "Kruidvat Sensitive billendoekjes (demo)",
-          "gtin": "2003560070894",
-          "sku": "DEMO-KRUIDVAT-33106",
           "verification": "onbekend",
           "gtinChanged": false
         }
@@ -1670,50 +822,14 @@
       "size": null,
       "weight": null,
       "unit": "g",
-      "bestPrice": 6.85,
-      "bestUnitPrice": 22.83,
+      "bestPrice": 8.24,
+      "bestUnitPrice": 27.47,
       "unitLabel": "per 100 g",
-      "gtin": "2009811741858",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 6.85,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 8.24,
       "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
-          "price": 6.85,
-          "unitPrice": 22.83,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 30,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Bepanthen Baby zalf 30 g (demo)",
-          "gtin": "2009811741858",
-          "sku": "DEMO-KRUIDVAT-10387",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
-          "price": 7.86,
-          "unitPrice": 26.2,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 30,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Bepanthen Baby zalf 30 g (demo)",
-          "gtin": "2009811741858",
-          "sku": "DEMO-TREKPLEISTER-29206",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -1725,29 +841,12 @@
             "amount": 30,
             "unit": "g"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Bepanthen Baby zalf 30 g (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-42802",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Bepanthen%20baby%20zalf%2030%20gram",
-          "price": 9.52,
-          "unitPrice": 31.73,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 30,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Bepanthen Baby zalf 30 g (demo)",
-          "gtin": "2009811741858",
-          "sku": "DEMO-ETOS-78749",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -1761,6 +860,7 @@
             "amount": 30,
             "unit": "g"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Bepanthen Baby zalf 30 g (demo)",
           "gtin": null,
@@ -1778,32 +878,14 @@
       "size": null,
       "weight": null,
       "unit": "g",
-      "bestPrice": 7.21,
-      "bestUnitPrice": 7.21,
+      "bestPrice": 7.82,
+      "bestUnitPrice": 7.82,
       "unitLabel": "per 100 g",
-      "gtin": "2005146136314",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 7.21,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 7.82,
       "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
-          "price": 7.21,
-          "unitPrice": 7.21,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 100,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Bepanthen Baby zalf 100 g (demo)",
-          "gtin": "2005146136314",
-          "sku": "DEMO-ETOS-18132",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -1815,6 +897,7 @@
             "amount": 100,
             "unit": "g"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Bepanthen Baby zalf 100 g (demo)",
           "gtin": null,
@@ -1833,47 +916,12 @@
             "amount": 100,
             "unit": "g"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Bepanthen Baby zalf 100 g (demo)",
           "gtin": "2003195246800",
           "sku": "DEMO-BABYPARK-44614",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
-          "price": 8.1,
-          "unitPrice": 8.1,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 100,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Bepanthen Baby zalf 100 g (demo)",
-          "gtin": "2005146136314",
-          "sku": "DEMO-KRUIDVAT-38378",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Bepanthen%20baby%20zalf%20100%20gram",
-          "price": 9.19,
-          "unitPrice": 9.19,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 100,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Bepanthen Baby zalf 100 g (demo)",
-          "gtin": "2005146136314",
-          "sku": "DEMO-TREKPLEISTER-75673",
-          "verification": "exact",
+          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -1886,50 +934,14 @@
       "size": null,
       "weight": null,
       "unit": "g",
-      "bestPrice": 7.19,
-      "bestUnitPrice": 5.75,
+      "bestPrice": 8.39,
+      "bestUnitPrice": 6.71,
       "unitLabel": "per 100 g",
-      "gtin": "2008318037723",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 7.19,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 8.39,
       "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Sudocrem%20125%20gram",
-          "price": 7.19,
-          "unitPrice": 5.75,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 125,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Sudocrem 125 g (demo)",
-          "gtin": "2008318037723",
-          "sku": "DEMO-KRUIDVAT-09831",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Sudocrem%20125%20gram",
-          "price": 7.92,
-          "unitPrice": 6.34,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 125,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Sudocrem 125 g (demo)",
-          "gtin": "2008318037723",
-          "sku": "DEMO-ETOS-47764",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "bol",
           "shopName": "bol",
@@ -1941,11 +953,12 @@
             "amount": 125,
             "unit": "g"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Sudocrem 125 g (demo)",
           "gtin": "2001534961377",
           "sku": "DEMO-BOL-55088",
-          "verification": "variant",
+          "verification": "onbekend",
           "gtinChanged": false
         },
         {
@@ -1959,29 +972,12 @@
             "amount": 125,
             "unit": "g"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Sudocrem 125 g (demo)",
           "gtin": null,
           "sku": "DEMO-BABYPARK-69299",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Sudocrem%20125%20gram",
-          "price": 9.43,
-          "unitPrice": 7.54,
-          "unitLabel": "per 100 g",
-          "packSize": {
-            "amount": 125,
-            "unit": "g"
-          },
-          "inStock": true,
-          "title": "Sudocrem 125 g (demo)",
-          "gtin": "2008318037723",
-          "sku": "DEMO-TREKPLEISTER-78088",
-          "verification": "exact",
           "gtinChanged": false
         }
       ]
@@ -1997,9 +993,9 @@
       "bestPrice": 8.18,
       "bestUnitPrice": 2.05,
       "unitLabel": "per 100 ml",
-      "gtin": "2005628901003",
+      "gtin": "2000524925191",
       "gtinSource": "consensus",
-      "verifiedOffers": 3,
+      "verifiedOffers": 2,
       "lowest30": 8.18,
       "offers": [
         {
@@ -2013,28 +1009,11 @@
             "amount": 400,
             "unit": "ml"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Zwitsal badschuim 400 ml (demo)",
           "gtin": "2000524925191",
           "sku": "DEMO-BABYPARK-46364",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
-          "price": 8.96,
-          "unitPrice": 2.24,
-          "unitLabel": "per 100 ml",
-          "packSize": {
-            "amount": 400,
-            "unit": "ml"
-          },
-          "inStock": true,
-          "title": "Zwitsal badschuim 400 ml (demo)",
-          "gtin": "2005628901003",
-          "sku": "DEMO-TREKPLEISTER-64061",
           "verification": "exact",
           "gtinChanged": false
         },
@@ -2049,46 +1028,11 @@
             "amount": 400,
             "unit": "ml"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Zwitsal badschuim 400 ml (demo)",
           "gtin": "2000524925191",
           "sku": "DEMO-BOL-85925",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
-          "price": 9.33,
-          "unitPrice": 2.33,
-          "unitLabel": "per 100 ml",
-          "packSize": {
-            "amount": 400,
-            "unit": "ml"
-          },
-          "inStock": true,
-          "title": "Zwitsal badschuim 400 ml (demo)",
-          "gtin": "2005628901003",
-          "sku": "DEMO-KRUIDVAT-89791",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Zwitsal%20badschuim%20400%20ml",
-          "price": 8.45,
-          "unitPrice": 2.11,
-          "unitLabel": "per 100 ml",
-          "packSize": {
-            "amount": 400,
-            "unit": "ml"
-          },
-          "inStock": false,
-          "title": "Zwitsal badschuim 400 ml (demo)",
-          "gtin": "2005628901003",
-          "sku": "DEMO-ETOS-66928",
           "verification": "exact",
           "gtinChanged": false
         }
@@ -2105,9 +1049,9 @@
       "bestPrice": 8.85,
       "bestUnitPrice": 0.0254,
       "unitLabel": "per stuk",
-      "gtin": "2008261912276",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
       "lowest30": 8.85,
       "offers": [
         {
@@ -2121,29 +1065,12 @@
             "amount": 349,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Zwitsal billendoekjes (demo)",
           "gtin": null,
           "sku": "DEMO-BOL-02141",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Zwitsal%20billendoekjes",
-          "price": 10.03,
-          "unitPrice": 0.0287,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 349,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Zwitsal billendoekjes (demo)",
-          "gtin": "2008261912276",
-          "sku": "DEMO-ETOS-23873",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -2157,190 +1084,11 @@
             "amount": 349,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Zwitsal billendoekjes (demo)",
           "gtin": null,
           "sku": "DEMO-BABYPARK-53346",
-          "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Zwitsal%20billendoekjes",
-          "price": 10.71,
-          "unitPrice": 0.0307,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 349,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Zwitsal billendoekjes (demo)",
-          "gtin": "2008261912276",
-          "sku": "DEMO-KRUIDVAT-47222",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Zwitsal%20billendoekjes",
-          "price": 11.12,
-          "unitPrice": 0.0319,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 349,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Zwitsal billendoekjes (demo)",
-          "gtin": "2008261912276",
-          "sku": "DEMO-TREKPLEISTER-54505",
-          "verification": "exact",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "kruidvat-luiers-3",
-      "name": "Kruidvat luiers maat 3",
-      "brand": "Kruidvat",
-      "category": "luiers",
-      "size": "3",
-      "weight": "6-10 kg",
-      "unit": "stuk",
-      "bestPrice": 23.85,
-      "bestUnitPrice": 0.2537,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 23.85,
-      "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Kruidvat%20luiers%20maat%203",
-          "price": 23.85,
-          "unitPrice": 0.2537,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 94,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Kruidvat luiers maat 3 (demo)",
-          "gtin": "2003806478125",
-          "sku": "DEMO-KRUIDVAT-79429",
-          "verification": "onbekend",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "kruidvat-luiers-5",
-      "name": "Kruidvat luiers maat 5",
-      "brand": "Kruidvat",
-      "category": "luiers",
-      "size": "5",
-      "weight": "11-16 kg",
-      "unit": "stuk",
-      "bestPrice": 24.16,
-      "bestUnitPrice": 0.2598,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 24.16,
-      "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Kruidvat%20luiers%20maat%205",
-          "price": 24.16,
-          "unitPrice": 0.2598,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 93,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Kruidvat luiers maat 5 (demo)",
-          "gtin": "2003572097490",
-          "sku": "DEMO-KRUIDVAT-81115",
-          "verification": "onbekend",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "etos-luiers-3",
-      "name": "Etos luiers maat 3",
-      "brand": "Etos",
-      "category": "luiers",
-      "size": "3",
-      "weight": "6-10 kg",
-      "unit": "stuk",
-      "bestPrice": 15.87,
-      "bestUnitPrice": 0.2035,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 15.87,
-      "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Etos%20luiers%20maat%203",
-          "price": 15.87,
-          "unitPrice": 0.2035,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 78,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Etos luiers maat 3 (demo)",
-          "gtin": "2000631158574",
-          "sku": "DEMO-ETOS-17143",
-          "verification": "onbekend",
-          "gtinChanged": false
-        }
-      ]
-    },
-    {
-      "id": "etos-luiers-5",
-      "name": "Etos luiers maat 5",
-      "brand": "Etos",
-      "category": "luiers",
-      "size": "5",
-      "weight": "11-16 kg",
-      "unit": "stuk",
-      "bestPrice": 17.52,
-      "bestUnitPrice": 0.2246,
-      "unitLabel": "per stuk",
-      "gtin": null,
-      "gtinSource": "geen",
-      "verifiedOffers": 0,
-      "lowest30": 17.52,
-      "offers": [
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Etos%20luiers%20maat%205",
-          "price": 17.52,
-          "unitPrice": 0.2246,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 78,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Etos luiers maat 5 (demo)",
-          "gtin": "2000553031696",
-          "sku": "DEMO-ETOS-48579",
           "verification": "onbekend",
           "gtinChanged": false
         }
@@ -2354,50 +1102,14 @@
       "size": "4",
       "weight": "7-14 kg",
       "unit": "stuk",
-      "bestPrice": 24.18,
-      "bestUnitPrice": 0.214,
+      "bestPrice": 28.32,
+      "bestUnitPrice": 0.2506,
       "unitLabel": "per stuk",
-      "gtin": "2007530870811",
-      "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 24.18,
+      "gtin": null,
+      "gtinSource": "geen",
+      "verifiedOffers": 0,
+      "lowest30": 28.32,
       "offers": [
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Bambo%20Nature%20luiers%20maat%204",
-          "price": 24.18,
-          "unitPrice": 0.214,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 113,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Bambo Nature luiers maat 4 (demo)",
-          "gtin": "2007530870811",
-          "sku": "DEMO-KRUIDVAT-35006",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Bambo%20Nature%20luiers%20maat%204",
-          "price": 27.2,
-          "unitPrice": 0.2407,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 113,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Bambo Nature luiers maat 4 (demo)",
-          "gtin": "2007530870811",
-          "sku": "DEMO-ETOS-57364",
-          "verification": "exact",
-          "gtinChanged": false
-        },
         {
           "shop": "babypark",
           "shopName": "Babypark",
@@ -2409,29 +1121,12 @@
             "amount": 113,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Bambo Nature luiers maat 4 (demo)",
           "gtin": null,
           "sku": "DEMO-BABYPARK-75670",
           "verification": "onbekend",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Bambo%20Nature%20luiers%20maat%204",
-          "price": 29.84,
-          "unitPrice": 0.2641,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 113,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Bambo Nature luiers maat 4 (demo)",
-          "gtin": "2007530870811",
-          "sku": "DEMO-TREKPLEISTER-82789",
-          "verification": "exact",
           "gtinChanged": false
         },
         {
@@ -2445,11 +1140,12 @@
             "amount": 203,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": false,
           "title": "Bambo Nature luiers maat 4 (demo)",
           "gtin": "2005484160163",
           "sku": "DEMO-BOL-91621",
-          "verification": "variant",
+          "verification": "onbekend",
           "gtinChanged": false
         }
       ]
@@ -2465,10 +1161,10 @@
       "bestPrice": 42.34,
       "bestUnitPrice": 0.2138,
       "unitLabel": "per stuk",
-      "gtin": "2006933744194",
+      "gtin": "2000760887130",
       "gtinSource": "consensus",
-      "verifiedOffers": 3,
-      "lowest30": 24.66,
+      "verifiedOffers": 2,
+      "lowest30": 42.34,
       "offers": [
         {
           "shop": "babypark",
@@ -2481,46 +1177,11 @@
             "amount": 198,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Naty eco luiers maat 3 (demo)",
           "gtin": "2000760887130",
           "sku": "DEMO-BABYPARK-34843",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "trekpleister",
-          "shopName": "Trekpleister",
-          "url": "https://www.trekpleister.nl/zoeken?q=Naty%20luiers%20maat%203",
-          "price": 24.66,
-          "unitPrice": 0.2242,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 110,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Naty eco luiers maat 3 (demo)",
-          "gtin": "2006933744194",
-          "sku": "DEMO-TREKPLEISTER-56042",
-          "verification": "exact",
-          "gtinChanged": false
-        },
-        {
-          "shop": "kruidvat",
-          "shopName": "Kruidvat",
-          "url": "https://www.kruidvat.nl/zoeken?q=Naty%20luiers%20maat%203",
-          "price": 25.39,
-          "unitPrice": 0.2308,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 110,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Naty eco luiers maat 3 (demo)",
-          "gtin": "2006933744194",
-          "sku": "DEMO-KRUIDVAT-63751",
           "verification": "exact",
           "gtinChanged": false
         },
@@ -2535,28 +1196,11 @@
             "amount": 198,
             "unit": "stuk"
           },
+          "source": "pagina",
           "inStock": true,
           "title": "Naty eco luiers maat 3 (demo)",
           "gtin": "2000760887130",
           "sku": "DEMO-BOL-84604",
-          "verification": "variant",
-          "gtinChanged": false
-        },
-        {
-          "shop": "etos",
-          "shopName": "Etos",
-          "url": "https://www.etos.nl/zoeken?q=Naty%20luiers%20maat%203",
-          "price": 30.66,
-          "unitPrice": 0.2787,
-          "unitLabel": "per stuk",
-          "packSize": {
-            "amount": 110,
-            "unit": "stuk"
-          },
-          "inStock": true,
-          "title": "Naty eco luiers maat 3 (demo)",
-          "gtin": "2006933744194",
-          "sku": "DEMO-ETOS-99769",
           "verification": "exact",
           "gtinChanged": false
         }
@@ -2565,9 +1209,9 @@
   ],
   "stats": {
     "products": 28,
-    "productsWithOffers": 28,
-    "offers": 112,
-    "shops": 5,
-    "verifiedOffers": 63
+    "productsWithOffers": 21,
+    "offers": 42,
+    "shops": 2,
+    "verifiedOffers": 12
   }
 }

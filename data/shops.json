@@ -2,29 +2,29 @@
   "kruidvat": {
     "name": "Kruidvat",
     "site": "https://www.kruidvat.nl",
-    "enabled": true,
+    "enabled": false,
     "delayMs": 3000,
     "searchUrl": "https://www.kruidvat.nl/search?text={q}",
     "productPathPattern": "^/[a-z0-9-]+/p/\\d+",
-    "note": "Productpagina's bevatten schema.org Product JSON-LD."
+    "note": "Uitgeschakeld: geeft HTTP 403 vanaf GitHub Actions. Gebruik de affiliatefeed (A.S. Watson via Awin/Daisycon/TradeTracker)."
   },
   "trekpleister": {
     "name": "Trekpleister",
     "site": "https://www.trekpleister.nl",
-    "enabled": true,
+    "enabled": false,
     "delayMs": 3000,
     "searchUrl": "https://www.trekpleister.nl/search?text={q}",
     "productPathPattern": "^/[a-z0-9-]+/p/\\d+",
-    "note": ""
+    "note": "Uitgeschakeld: geeft HTTP 403 vanaf GitHub Actions. Zelfde platform als Kruidvat; gebruik de affiliatefeed."
   },
   "etos": {
     "name": "Etos",
     "site": "https://www.etos.nl",
-    "enabled": true,
+    "enabled": false,
     "delayMs": 3000,
     "searchUrl": "https://www.etos.nl/search?q={q}",
     "productPathPattern": "/p/\\d+",
-    "note": ""
+    "note": "Uitgeschakeld: reageert niet op gewone aanvragen (timeout). Gebruik de affiliatefeed."
   },
   "bol": {
     "name": "bol",
@@ -33,7 +33,9 @@
     "delayMs": 4000,
     "searchUrl": "https://www.bol.com/nl/nl/s/?searchtext={q}",
     "productPathPattern": "^/nl/nl/p/[^/]+/\\d+",
-    "note": "bol heeft een partnerprogramma met een officiele product-API. Gebruik die feed zodra je een partner-account hebt; HTML-scrapen is de terugvaloptie."
+    "note": "Zoeken is verboden in robots.txt en de site antwoordt niet op gewone aanvragen. Gebruik het Partnerprogramma (feed of API); vul anders vaste product-URL's in via 'links' in de catalogus.",
+    "discovery": "browse",
+    "browseUrls": []
   },
   "babypark": {
     "name": "Babypark",
@@ -42,7 +44,11 @@
     "delayMs": 3000,
     "searchUrl": "https://www.babypark.nl/catalogsearch/result/?q={q}",
     "productPathPattern": "\\.html$",
-    "note": ""
+    "note": "Zoeken is verboden in robots.txt; productpagina's en categoriepagina's zijn wel toegestaan, dus we bladeren.",
+    "discovery": "browse",
+    "browseUrls": [
+      "https://www.babypark.nl/verzorging/luiers.html"
+    ]
   },
   "ah": {
     "name": "Albert Heijn",

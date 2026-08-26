@@ -1,0 +1,37 @@
+{
+  "$comment": "Productfeeds van affiliatenetwerken of partnerprogramma's. De feed-URL zelf bevat meestal een sleutel en hoort daarom NIET hier maar in een repository-secret: zet 'urlEnv' op de naam van dat secret en voeg het toe onder Settings > Secrets and variables > Actions. Een feed zonder ingevuld secret wordt stilzwijgend overgeslagen. Met 'mapping' pas je veldnamen aan als de feed afwijkende kolommen gebruikt.",
+  "feeds": [
+    {
+      "id": "bol-partner",
+      "shop": "bol",
+      "name": "bol Partnerprogramma",
+      "urlEnv": "FEED_BOL_URL",
+      "format": "auto",
+      "enabled": true
+    },
+    {
+      "id": "kruidvat-affiliate",
+      "shop": "kruidvat",
+      "name": "Kruidvat (affiliatenetwerk)",
+      "urlEnv": "FEED_KRUIDVAT_URL",
+      "format": "auto",
+      "enabled": true
+    },
+    {
+      "id": "etos-affiliate",
+      "shop": "etos",
+      "name": "Etos (affiliatenetwerk)",
+      "urlEnv": "FEED_ETOS_URL",
+      "format": "auto",
+      "enabled": true
+    },
+    {
+      "id": "babypark-affiliate",
+      "shop": "babypark",
+      "name": "Babypark (affiliatenetwerk)",
+      "urlEnv": "FEED_BABYPARK_URL",
+      "format": "auto",
+      "enabled": true
+    }
+  ]
+}

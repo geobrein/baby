@@ -8,6 +8,7 @@ export const SITE_DATA_DIR = path.join(ROOT, 'site', 'data');
 export const paths = {
   catalog: path.join(DATA_DIR, 'catalog.json'),
   shops: path.join(DATA_DIR, 'shops.json'),
+  feeds: path.join(DATA_DIR, 'feeds.json'),
   resolved: path.join(DATA_DIR, 'resolved.json'),
   history: path.join(DATA_DIR, 'history.json'),
   identity: path.join(DATA_DIR, 'identity.json'),

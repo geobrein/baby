@@ -6,6 +6,7 @@ import { paths as defaultPaths } from './paths.mjs';
 import { readJson, writeJson, appendHistory, lowestInPeriod } from './store.mjs';
 import { compareOffers } from './rank.mjs';
 import { verifyOffers, recordIdentity, EXACT } from './verify.mjs';
+import { collectFeedOffers } from './feed-run.mjs';
 import { displayGtin } from './identity.mjs';
 
 export const DEFAULT_BUDGET_MINUTES = 25;
@@ -77,10 +78,29 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   const today = startedAt.toISOString().slice(0, 10);
 
   const fetcher = injected ?? new Fetcher({ respectRobots: args.robots, log });
+  // Categoriepagina's worden per ronde een keer opgehaald en door alle producten gedeeld.
+  const browseCache = new Map();
   const offersByProduct = new Map(products.map((p) => [p.id, []]));
   const problems = [];
 
   log(`${products.length} producten x ${activeShops.length} winkels${args.mock ? ' (demo)' : ''}`);
+
+  // Officiele productfeeds gaan voor: die geven prijs, voorraad en EAN rechtstreeks.
+  let feedsUsed = [];
+  if (!args.mock) {
+    const feedConfig = paths.feeds ? ((await readJson(paths.feeds, { feeds: [] }))?.feeds ?? []) : [];
+    const result = await collectFeedOffers({ feeds: feedConfig, shops, products, log });
+    feedsUsed = result.used;
+    problems.push(...result.problems);
+    for (const [productId, list] of result.offers) {
+      if (!offersByProduct.has(productId)) continue;
+      offersByProduct.get(productId).push(...list);
+      for (const offer of list) {
+        resolved[`${productId}|${offer.shop}`] = { url: offer.url, title: offer.title, resolvedAt: startedAt.toISOString(), source: 'feed' };
+        appendHistory(history, productId, offer.shop, today, offer.price, offer.unitPrice);
+      }
+    }
+  }
 
   // Winkels parallel, producten binnen een winkel netjes op volgorde.
   const budgetMs = (args.budgetMinutes ?? DEFAULT_BUDGET_MINUTES) * 60_000;
@@ -90,8 +110,13 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   await Promise.all(activeShops.map(async ([shopId, shop]) => {
     let consecutiveFailures = 0;
     let done = 0;
+    const feedCovered = new Set(
+      feedsUsed.filter((f) => f.shop === shopId && f.matched > 0).map((f) => f.shop),
+    );
     for (const product of products) {
       if (Array.isArray(product.shops) && !product.shops.includes(shopId)) continue;
+      // Levert de feed van deze winkel dit product al, dan hoeft de pagina niet opgehaald.
+      if (feedCovered.has(shopId) && (offersByProduct.get(product.id) ?? []).some((o) => o.shop === shopId)) continue;
 
       // Een winkel die blijft weigeren mag de rest van de ronde niet opeten.
       if (consecutiveFailures >= maxFailures) {
@@ -118,7 +143,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
       try {
         offer = args.mock
           ? mockOffer(shopId, shop, product, startedAt)
-          : await fetchOffer(fetcher, shopId, shop, product, product.links?.[shopId] ?? resolved[key]?.url);
+          : await fetchOffer(fetcher, shopId, shop, product, product.links?.[shopId] ?? resolved[key]?.url, { browseCache });
       } catch (err) {
         offer = { shop: shopId, shopName: shop.name, ok: false, error: err.message, url: null, price: null };
       }
@@ -144,7 +169,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   for (const product of products) {
     const raw = offersByProduct.get(product.id) ?? [];
     if (!raw.length) continue;
-    const result = verifyOffers(product, raw, identity[product.id]);
+    const result = verifyOffers(product, dedupePerShop(raw), identity[product.id]);
     offersByProduct.set(product.id, result.offers);
     verification.set(product.id, result);
     recordIdentity(identity, product.id, result.offers, startedAt);
@@ -197,6 +222,16 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
  */
 export const MAX_CACHED_FAILURES = 3;
 
+/** Een winkel hoort een keer in de lijst te staan; de feed wint van de productpagina. */
+function dedupePerShop(offers) {
+  const byShop = new Map();
+  for (const offer of offers) {
+    const current = byShop.get(offer.shop);
+    if (!current || (offer.source === 'feed' && current.source !== 'feed')) byShop.set(offer.shop, offer);
+  }
+  return [...byShop.values()];
+}
+
 function forgetResolved(resolved, key, error = '') {
   const entry = resolved[key];
   if (!entry) return;
@@ -239,6 +274,7 @@ function buildPayload({ catalog, shops, products, offersByProduct, verification,
         unitPrice: o.unitPrice ?? null,
         unitLabel: o.unitLabel ?? null,
         packSize: o.packSize ?? null,
+        source: o.source ?? 'pagina',
         inStock: o.inStock,
         title: o.title ?? null,
         gtin: o.gtinDisplay ?? null,

@@ -5,6 +5,30 @@ import { isValidGtin } from './identity.mjs';
 /**
  * @returns {{errors: string[], warnings: string[]}}
  */
+export function validateFeeds(feedConfig, shops) {
+  const errors = [];
+  const warnings = [];
+  const feeds = feedConfig?.feeds;
+  if (feeds === undefined) return { errors, warnings };
+  if (!Array.isArray(feeds)) return { errors: ["feeds.json: 'feeds' moet een lijst zijn"], warnings };
+
+  const seen = new Set();
+  for (const feed of feeds) {
+    const label = feed.id ?? '(zonder id)';
+    if (!feed.id) errors.push('feed zonder id');
+    else if (seen.has(feed.id)) errors.push(`dubbele feed-id: ${feed.id}`);
+    seen.add(feed.id);
+    if (!feed.shop) errors.push(`${label}: 'shop' ontbreekt`);
+    else if (shops && !shops[feed.shop]) errors.push(`${label}: onbekende winkel '${feed.shop}'`);
+    if (!feed.urlEnv) errors.push(`${label}: 'urlEnv' ontbreekt (naam van het secret met de feed-URL)`);
+    else if (/^https?:/i.test(feed.urlEnv)) errors.push(`${label}: 'urlEnv' hoort een secretnaam te zijn, geen URL`);
+    if (feed.format && !['auto', 'csv', 'xml'].includes(feed.format)) {
+      errors.push(`${label}: onbekend formaat '${feed.format}'`);
+    }
+  }
+  return { errors, warnings };
+}
+
 export function validateCatalog(catalog, shops) {
   const errors = [];
   const warnings = [];
@@ -20,7 +44,13 @@ export function validateCatalog(catalog, shops) {
     const shop = shops[shopId];
     if (!shop.name) errors.push(`winkel ${shopId}: 'name' ontbreekt`);
     if (!shop.site) errors.push(`winkel ${shopId}: 'site' ontbreekt`);
-    if (!shop.searchUrl?.includes('{q}')) errors.push(`winkel ${shopId}: 'searchUrl' mist {q}`);
+    if (shop.searchUrl && !shop.searchUrl.includes('{q}')) errors.push(`winkel ${shopId}: 'searchUrl' mist {q}`);
+    if (!shop.searchUrl && !shop.browseUrls?.length && shop.enabled !== false) {
+      errors.push(`winkel ${shopId}: geen 'searchUrl' en geen 'browseUrls', producten zijn dan niet te vinden`);
+    }
+    if (shop.discovery === 'browse' && !shop.browseUrls?.length && shop.enabled !== false) {
+      warnings.push(`winkel ${shopId}: discovery staat op 'browse' maar er zijn geen browseUrls`);
+    }
     if (shop.productPathPattern) {
       try {
         new RegExp(shop.productPathPattern);
