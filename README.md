@@ -168,7 +168,9 @@ productlinks uit de zoekresultatenpagina gevist. `delayMs` is de wachttijd tusse
 verzoeken aan dezelfde winkel.
 
 Albert Heijn en Jumbo staan meegeleverd maar **uitgeschakeld**: die sites weren geautomatiseerd
-verkeer actief. Zet ze alleen aan als je daar afspraken over hebt gemaakt.
+verkeer actief. Zet ze alleen aan als je daar afspraken over hebt gemaakt. Zie ook
+*Wat de eerste echte ronde uitwees* hieronder: op dit moment is geen van de winkels via de
+zoekpagina bereikbaar.
 
 ## Dagelijks bijwerken en publiceren
 
@@ -201,6 +203,34 @@ Blijf zelf verantwoordelijk voor de voorwaarden van de winkels die je toevoegt. 
 een affiliate- of product-API (bol heeft die bijvoorbeeld), gebruik die dan in plaats van HTML;
 dat is stabieler en netter. De site toont geen winkelfoto's of -teksten, alleen prijs,
 verpakkingsgrootte en een link.
+
+## Wat de eerste echte ronde uitwees (26 augustus 2026)
+
+Zoeken via de zoekpagina van de winkel werkt niet vanaf GitHub Actions. Gemeten met
+`node scripts/probe-shops.mjs` (workflow *Winkels onderzoeken*):
+
+| Winkel | robots.txt | Zoekpagina | Productpagina | Bereikbaar |
+| --- | --- | --- | --- | --- |
+| Babypark | leesbaar | verboden | toegestaan | ja (HTTP 200) |
+| bol | leesbaar | verboden | toegestaan | homepage timeout |
+| Kruidvat | HTTP 403 | - | - | nee |
+| Trekpleister | HTTP 403 | - | - | nee |
+| Etos | timeout | - | - | nee |
+| Albert Heijn | HTTP 403 | - | - | nee |
+| Jumbo | timeout | - | - | nee |
+
+Kort samengevat: Kruidvat, Trekpleister, Albert Heijn weren het verkeer met een 403,
+Etos en Jumbo antwoorden niet, en bol en Babypark verbieden de zoekpagina in hun
+robots.txt (daar houdt de ophaler zich aan) maar staan productpagina's wel toe.
+
+Daarmee zijn er nog twee begaanbare wegen:
+
+1. **Officiele feeds of API's.** Zo werken echte prijsvergelijkers: via het
+   partnerprogramma van bol of een affiliatenetwerk (Awin, Daisycon, TradeTracker) krijg
+   je een productfeed met prijs, voorraad, EAN en een deeplink. Stabiel, toegestaan, en
+   de EAN-verificatie in dit project wordt er alleen maar sterker van.
+2. **Vaste product-URL's** via `links` in de catalogus, voor winkels die productpagina's
+   toestaan. Dan wordt er niet gezocht en blijft het bij het ophalen van die ene pagina.
 
 ## Beperkingen om te weten
 
