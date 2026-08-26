@@ -11,6 +11,8 @@ import { Fetcher, DEFAULT_USER_AGENT } from './lib/http.mjs';
 import { isAllowed, crawlDelay } from './lib/robots.mjs';
 import { extractProduct } from './lib/parse.mjs';
 import { extractLinks, stripTags } from './lib/html.mjs';
+import { extractCandidates, loadBrowsePages } from './lib/shop.mjs';
+import { scoreCandidate } from './lib/match.mjs';
 import { paths } from './lib/paths.mjs';
 import { readJson } from './lib/store.mjs';
 
@@ -18,6 +20,8 @@ const argv = process.argv.slice(2);
 const only = argv.find((a) => a.startsWith('--only='))?.slice(7).split(',');
 const extraUrls = argv.filter((a) => a.startsWith('--url=')).map((a) => a.slice(6));
 const linkPage = argv.find((a) => a.startsWith('--links='))?.slice(8);
+const candidatesFor = argv.find((a) => a.startsWith('--candidates='))?.slice(13);
+const productId = argv.find((a) => a.startsWith('--product='))?.slice(10);
 const linkMatch = argv.find((a) => a.startsWith('--match='))?.slice(8) ?? 'luier';
 
 const shops = await readJson(paths.shops);
@@ -58,7 +62,36 @@ for (const [id, shop] of Object.entries(shops)) {
   console.log('');
 }
 
-if (linkPage) {
+if (candidatesFor) {
+  // Wat ziet de ophaler op de categoriepagina, en waarom past het wel of niet?
+  const shop = shops[candidatesFor];
+  const catalog = await readJson(paths.catalog);
+  const product = productId ? catalog.products.find((p) => p.id === productId) : null;
+  console.log(`## kandidaten bij ${shop.name}${product ? ` voor ${product.id}` : ''}`);
+
+  const pages = linkPage
+    ? [await fetcher.text(linkPage)].filter((r) => r.ok)
+    : await loadBrowsePages(fetcher, shop, new Map());
+  console.log(`   ${pages.length} pagina('s) opgehaald`);
+
+  const candidates = pages.flatMap((page) => extractCandidates(page.body, shop, page.url));
+  console.log(`   ${candidates.length} productlinks herkend\n`);
+
+  for (const candidate of candidates.slice(0, 25)) {
+    const verdict = product ? scoreCandidate(candidate.title, product) : null;
+    const mark = verdict ? (verdict.ok ? `PAST (${verdict.score})` : verdict.reason) : '';
+    console.log(`   ${candidate.title}`);
+    console.log(`      ${candidate.url}${mark ? ` -> ${mark}` : ''}`);
+  }
+
+  if (product) {
+    const passing = candidates.filter((c) => scoreCandidate(c.title, product).ok);
+    console.log(`\n   ${passing.length} van ${candidates.length} kandidaten past bij ${product.id}`);
+  }
+  console.log('');
+}
+
+if (linkPage && !candidatesFor) {
   // Zoeken mag vaak niet, bladeren wel: welke categoriepagina's biedt de winkel aan?
   console.log(`## links op ${linkPage} die "${linkMatch}" bevatten`);
   const res = await fetcher.text(linkPage);

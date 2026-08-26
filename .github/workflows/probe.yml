@@ -19,6 +19,14 @@ on:
         description: 'Toon alleen links die dit woord bevatten (standaard: luier)'
         required: false
         default: 'luier'
+      candidates:
+        description: 'Winkel-id: toon welke producten de ophaler op de categoriepagina ziet'
+        required: false
+        default: ''
+      product:
+        description: 'Product-id om de kandidaten tegen te toetsen'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -38,4 +46,6 @@ jobs:
           [ -n "${{ inputs.only }}" ] && args="$args --only=${{ inputs.only }}"
           [ -n "${{ inputs.url }}" ] && args="$args --url=${{ inputs.url }}"
           [ -n "${{ inputs.links }}" ] && args="$args --links=${{ inputs.links }} --match=${{ inputs.match }}"
+          [ -n "${{ inputs.candidates }}" ] && args="$args --candidates=${{ inputs.candidates }}"
+          [ -n "${{ inputs.product }}" ] && args="$args --product=${{ inputs.product }}"
           node scripts/probe-shops.mjs $args | tee -a "$GITHUB_STEP_SUMMARY"
