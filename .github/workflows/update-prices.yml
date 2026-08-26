@@ -10,6 +10,15 @@ on:
         description: 'Alleen deze winkels (komma-gescheiden, leeg = alle)'
         required: false
         default: ''
+      limit:
+        description: 'Maximaal zoveel producten (leeg = alle)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Alleen kijken wat er gevonden wordt, niets wegschrijven'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -33,11 +42,12 @@ jobs:
         run: |
           # Het tijdbudget ligt onder de timeout van de job, zodat er altijd
           # resultaat weggeschreven en gecommit wordt.
-          if [ -n "${{ inputs.only }}" ]; then
-            node scripts/fetch-prices.mjs --budget=30 --only="${{ inputs.only }}"
-          else
-            node scripts/fetch-prices.mjs --budget=30
-          fi
+          args="--budget=30"
+          [ -n "${{ inputs.only }}" ] && args="$args --only=${{ inputs.only }}"
+          [ -n "${{ inputs.limit }}" ] && args="$args --limit=${{ inputs.limit }}"
+          [ "${{ inputs.dry_run }}" = "true" ] && args="$args --dry-run"
+          echo "node scripts/fetch-prices.mjs $args"
+          node scripts/fetch-prices.mjs $args
 
       - name: Samenvatting
         if: always()
