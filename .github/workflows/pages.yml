@@ -2,7 +2,8 @@ name: Site publiceren
 
 on:
   push:
-    branches: [main]
+    # De standaardbranch van deze repo; werkt ook na hernoemen naar main.
+    branches: [main, 'claude/baby-product-price-comparison-uvn9dz']
     paths:
       - 'site/**'
       - '.github/workflows/pages.yml'
