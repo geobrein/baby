@@ -152,3 +152,64 @@ test('run stopt met een duidelijke melding zonder actieve winkels', async (t) =>
     /Geen actieve winkels/,
   );
 });
+
+test('een winkel die blijft weigeren wordt overgeslagen', async (t) => {
+  const { dir, paths } = await workspace();
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+
+  // Catalogus met tien producten die geen van alle gevonden worden.
+  const catalog = JSON.parse(await fs.readFile(paths.catalog, 'utf8'));
+  catalog.products = Array.from({ length: 10 }, (_, i) => ({
+    id: `onvindbaar-${i}`,
+    name: `Onvindbaar ${i}`,
+    brand: 'Onvindbaar',
+    category: 'luiers',
+    unit: 'stuk',
+    query: `onvindbaar ${i}`,
+    match: { must: ['onvindbaar'] },
+  }));
+  await fs.writeFile(paths.catalog, JSON.stringify(catalog));
+
+  const log = [];
+  const { problems } = await run(parseArgs(['--max-failures=3']), { paths, log: () => {}, fetcher: stubFetcher(log) });
+
+  assert.ok(problems.some((p) => /overgeslagen na 3 mislukkingen/.test(p.error)));
+  assert.equal(problems.filter((p) => p.product.startsWith('onvindbaar')).length, 3, 'na drie keer stopt het');
+});
+
+test('het tijdbudget bewaart wat er tot dan toe gevonden is', async (t) => {
+  const { dir, paths } = await workspace();
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+
+  const { payload, problems } = await run(parseArgs(['--budget=0.000001']), { paths, log: () => {}, fetcher: stubFetcher() });
+
+  assert.ok(problems.some((p) => /tijdbudget bereikt/.test(p.error)));
+  assert.ok(Array.isArray(payload.products), 'er wordt nog steeds site-data geschreven');
+  await fs.access(paths.sitePrices);
+});
+
+test('een storing gooit een goede product-URL niet meteen weg', async (t) => {
+  const { dir, paths } = await workspace();
+  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+
+  await run(parseArgs([]), { paths, log: () => {}, fetcher: stubFetcher() });
+  const key = 'pampers-baby-dry-4|test';
+
+  // Winkel plat: elke aanvraag mislukt.
+  const dood = new Fetcher({
+    respectRobots: false,
+    defaultDelayMs: 0,
+    maxRetries: 0,
+    fetch: async (url) => ({ ok: false, status: 503, url, text: async () => '', headers: { get: () => null } }),
+  });
+
+  for (const ronde of [1, 2]) {
+    await run(parseArgs([]), { paths, log: () => {}, fetcher: dood });
+    const cache = JSON.parse(await fs.readFile(paths.resolved, 'utf8'));
+    assert.equal(cache[key]?.failures, ronde, `na ronde ${ronde} blijft de URL staan`);
+  }
+
+  await run(parseArgs([]), { paths, log: () => {}, fetcher: dood });
+  const cache = JSON.parse(await fs.readFile(paths.resolved, 'utf8'));
+  assert.equal(cache[key], undefined, 'na drie mislukte rondes wordt er opnieuw gezocht');
+});

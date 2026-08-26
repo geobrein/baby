@@ -21,7 +21,7 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -31,10 +31,12 @@ jobs:
 
       - name: Prijzen ophalen
         run: |
+          # Het tijdbudget ligt onder de timeout van de job, zodat er altijd
+          # resultaat weggeschreven en gecommit wordt.
           if [ -n "${{ inputs.only }}" ]; then
-            node scripts/fetch-prices.mjs --only="${{ inputs.only }}"
+            node scripts/fetch-prices.mjs --budget=30 --only="${{ inputs.only }}"
           else
-            node scripts/fetch-prices.mjs
+            node scripts/fetch-prices.mjs --budget=30
           fi
 
       - name: Samenvatting

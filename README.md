@@ -96,7 +96,7 @@ De weergave is deelbaar via de URL, bijvoorbeeld `?view=luiers&maat=4&merk=Pampe
 Node 20 of nieuwer, verder niets nodig.
 
 ```bash
-npm test                     # 60 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
+npm test                     # 63 tests (parsers, EAN-controle, matching, robots.txt, hele ronde)
 npm run fetch:mock           # demoprijzen, zonder netwerkverkeer
 npm run serve                # site op http://localhost:8080
 ```
@@ -108,6 +108,7 @@ npm run fetch                          # alle ingeschakelde winkels
 node scripts/fetch-prices.mjs --only=kruidvat,etos
 node scripts/fetch-prices.mjs --product=bepanthen-baby-zalf-30g
 node scripts/fetch-prices.mjs --limit=5      # eerst even klein proberen
+node scripts/fetch-prices.mjs --budget=10    # stop na 10 minuten en bewaar wat er is
 npm run check-catalog                  # welk product wordt in welke winkel gevonden (met EAN)?
 node scripts/pin-gtins.mjs --write     # gevonden artikelnummers vastleggen in de catalogus
 node scripts/validate-catalog.mjs      # catalogus controleren zonder netwerk
@@ -209,6 +210,9 @@ verpakkingsgrootte en een link.
 - `site/data/prices.json` bevat nu **demoprijzen**; de eerste echte ronde overschrijft ze en de
   demo-melding op de site verdwijnt vanzelf.
 - Prijzen zijn een momentopname van één keer per dag. De prijs in de winkel is leidend.
+- Grote winkels weren geautomatiseerd verkeer soms actief. Daarom stopt de ophaler bij een winkel
+  na zes mislukkingen op rij, en stopt de hele ronde na het tijdbudget (`--budget`, standaard 25
+  minuten) — wat dan gevonden is, wordt gewoon bewaard en gepubliceerd.
 - Niet elke winkel publiceert een EAN. Zonder artikelnummer blijft de vergelijking op naam,
   maat en verpakkingsgrootte staan — dat is dan zichtbaar als *EAN onbekend*.
 - Er wordt geen rekening gehouden met verzendkosten, kortingsacties bij meerdere stuks of

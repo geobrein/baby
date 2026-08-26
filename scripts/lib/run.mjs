@@ -8,8 +8,14 @@ import { compareOffers } from './rank.mjs';
 import { verifyOffers, recordIdentity, EXACT } from './verify.mjs';
 import { displayGtin } from './identity.mjs';
 
+export const DEFAULT_BUDGET_MINUTES = 25;
+export const DEFAULT_MAX_FAILURES = 6;
+
 export function parseArgs(argv) {
-  const args = { mock: false, robots: true, only: null, product: null, limit: null, quiet: false, help: false };
+  const args = {
+    mock: false, robots: true, only: null, product: null, limit: null, quiet: false, help: false,
+    budgetMinutes: DEFAULT_BUDGET_MINUTES, maxFailures: DEFAULT_MAX_FAILURES,
+  };
   for (const arg of argv) {
     if (arg === '--mock') args.mock = true;
     else if (arg === '--no-robots') args.robots = false;
@@ -18,9 +24,17 @@ export function parseArgs(argv) {
     else if (arg.startsWith('--only=')) args.only = split(arg.slice(7));
     else if (arg.startsWith('--product=')) args.product = split(arg.slice(10));
     else if (arg.startsWith('--limit=')) args.limit = Number.parseInt(arg.slice(8), 10);
+    else if (arg.startsWith('--budget=')) args.budgetMinutes = number(arg.slice(9), 'budget');
+    else if (arg.startsWith('--max-failures=')) args.maxFailures = number(arg.slice(15), 'max-failures');
     else throw new Error(`Onbekende optie: ${arg}`);
   }
   return args;
+}
+
+function number(value, name) {
+  const parsed = Number.parseFloat(value);
+  if (!Number.isFinite(parsed) || parsed <= 0) throw new Error(`--${name} moet een positief getal zijn`);
+  return parsed;
 }
 
 const split = (value) => value.split(',').map((s) => s.trim()).filter(Boolean);
@@ -31,6 +45,8 @@ export const HELP = `babyprijs - prijzen ophalen
   --only=a,b          alleen deze winkels
   --product=id,id     alleen deze producten
   --limit=n           maximaal n producten
+  --budget=minuten    stop met ophalen na zoveel minuten en bewaar wat er is (standaard 25)
+  --max-failures=n    sla een winkel over na n mislukkingen op rij (standaard 6)
   --no-robots         robots.txt niet controleren (alleen voor eigen tests)
   --quiet             minder logregels`;
 
@@ -65,9 +81,32 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   log(`${products.length} producten x ${activeShops.length} winkels${args.mock ? ' (demo)' : ''}`);
 
   // Winkels parallel, producten binnen een winkel netjes op volgorde.
+  const budgetMs = (args.budgetMinutes ?? DEFAULT_BUDGET_MINUTES) * 60_000;
+  const maxFailures = args.maxFailures ?? DEFAULT_MAX_FAILURES;
+  const deadline = startedAt.getTime() + budgetMs;
+
   await Promise.all(activeShops.map(async ([shopId, shop]) => {
+    let consecutiveFailures = 0;
     for (const product of products) {
       if (Array.isArray(product.shops) && !product.shops.includes(shopId)) continue;
+
+      // Een winkel die blijft weigeren mag de rest van de ronde niet opeten.
+      if (consecutiveFailures >= maxFailures) {
+        problems.push({
+          product: '(rest)',
+          shop: shopId,
+          error: `winkel overgeslagen na ${consecutiveFailures} mislukkingen op rij`,
+        });
+        log(`  ${shop.name}: overgeslagen na ${consecutiveFailures} mislukkingen op rij`);
+        break;
+      }
+      // Liever een halve ronde bewaren dan door een tijdslimiet met lege handen staan.
+      if (!args.mock && Date.now() > deadline) {
+        problems.push({ product: '(rest)', shop: shopId, error: 'tijdbudget bereikt, rest overgeslagen' });
+        log(`  ${shop.name}: tijdbudget van ${args.budgetMinutes} minuten bereikt`);
+        break;
+      }
+
       const key = `${product.id}|${shopId}`;
       let offer;
       try {
@@ -79,12 +118,15 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
       }
 
       if (offer.ok) {
+        consecutiveFailures = 0;
         resolved[key] = { url: offer.url, title: offer.title, resolvedAt: startedAt.toISOString() };
+
         appendHistory(history, product.id, shopId, today, offer.price, offer.unitPrice);
         offersByProduct.get(product.id).push(offer);
         log(`  ${shop.name}: ${product.name} -> € ${offer.price.toFixed(2)}`);
       } else {
-        delete resolved[key];
+        consecutiveFailures += 1;
+        forgetResolved(resolved, key, offer.error);
         problems.push({ product: product.id, shop: shopId, error: offer.error ?? 'onbekend' });
         log(`  ${shop.name}: ${product.name} -> geen prijs (${offer.error ?? 'onbekend'})`);
       }
@@ -117,6 +159,8 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
     await writeJson(paths.report, {
       ranAt: startedAt.toISOString(),
       mock: false,
+      durationSeconds: Math.round((Date.now() - startedAt.getTime()) / 1000),
+      budgetMinutes: args.budgetMinutes,
       shops: activeShops.map(([id]) => id),
       productCount: products.length,
       offerCount: payload.stats.offers,
@@ -125,6 +169,22 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
   }
 
   return { payload, problems };
+}
+
+/**
+ * Een storing bij de winkel is geen reden om een goede product-URL weg te gooien:
+ * die kost een zoekopdracht om terug te vinden. Alleen bij een pagina die aantoonbaar
+ * niet meer klopt, of na drie mislukte rondes, vergeten we hem.
+ */
+export const MAX_CACHED_FAILURES = 3;
+
+function forgetResolved(resolved, key, error = '') {
+  const entry = resolved[key];
+  if (!entry) return;
+  const wrongPage = /past niet meer|ander artikel|geen prijs op de pagina/i.test(error ?? '');
+  const failures = (entry.failures ?? 0) + 1;
+  if (wrongPage || failures >= MAX_CACHED_FAILURES) delete resolved[key];
+  else resolved[key] = { ...entry, failures };
 }
 
 function buildPayload({ catalog, shops, products, offersByProduct, verification, history, args, startedAt }) {
