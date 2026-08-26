@@ -19,7 +19,8 @@ import { readJson } from './lib/store.mjs';
 const argv = process.argv.slice(2);
 const only = argv.find((a) => a.startsWith('--only='))?.slice(7).split(',');
 const extraUrls = argv.filter((a) => a.startsWith('--url=')).map((a) => a.slice(6));
-const linkPage = argv.find((a) => a.startsWith('--links='))?.slice(8);
+const linkPages = argv.find((a) => a.startsWith('--links='))?.slice(8).split(',').filter(Boolean) ?? [];
+const linkPage = linkPages[0];
 const candidatesFor = argv.find((a) => a.startsWith('--candidates='))?.slice(13);
 const productId = argv.find((a) => a.startsWith('--product='))?.slice(10);
 const outbound = argv.find((a) => a.startsWith('--outbound='))?.slice(11);
@@ -134,14 +135,14 @@ if (candidatesFor) {
   console.log('');
 }
 
-if (linkPage && !candidatesFor) {
+for (const page of candidatesFor ? [] : linkPages) {
   // Zoeken mag vaak niet, bladeren wel: welke categoriepagina's biedt de winkel aan?
-  console.log(`## links op ${linkPage} die "${linkMatch}" bevatten`);
-  const res = await fetcher.text(linkPage);
+  console.log(`## links op ${page} die "${linkMatch}" bevatten`);
+  const res = await fetcher.text(page);
   if (!res.ok) {
     console.log(`   ${res.error}\n`);
   } else {
-    const robots = await fetcher.text(`${new URL(linkPage).origin}/robots.txt`);
+    const robots = await fetcher.text(`${new URL(page).origin}/robots.txt`);
     const needle = linkMatch.toLowerCase();
     const links = [...new Set(extractLinks(res.body)
       .map((href) => {
