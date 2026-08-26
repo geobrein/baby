@@ -89,6 +89,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
 
   await Promise.all(activeShops.map(async ([shopId, shop]) => {
     let consecutiveFailures = 0;
+    let done = 0;
     for (const product of products) {
       if (Array.isArray(product.shops) && !product.shops.includes(shopId)) continue;
 
@@ -103,12 +104,15 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
         break;
       }
       // Liever een halve ronde bewaren dan door een tijdslimiet met lege handen staan.
-      if (!args.mock && Date.now() > deadline) {
+      // Het eerste product van een winkel gaat altijd door, anders levert een krap
+      // budget een lege ronde op.
+      if (done > 0 && !args.mock && Date.now() > deadline) {
         problems.push({ product: '(rest)', shop: shopId, error: 'tijdbudget bereikt, rest overgeslagen' });
         log(`  ${shop.name}: tijdbudget van ${args.budgetMinutes} minuten bereikt`);
         break;
       }
 
+      done += 1;
       const key = `${product.id}|${shopId}`;
       let offer;
       try {

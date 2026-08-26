@@ -181,10 +181,14 @@ test('het tijdbudget bewaart wat er tot dan toe gevonden is', async (t) => {
   const { dir, paths } = await workspace();
   t.after(() => fs.rm(dir, { recursive: true, force: true }));
 
-  const { payload, problems } = await run(parseArgs(['--budget=0.000001']), { paths, log: () => {}, fetcher: stubFetcher() });
+  const { payload, problems, published } = await run(
+    parseArgs(['--budget=0.000001']),
+    { paths, log: () => {}, fetcher: stubFetcher() },
+  );
 
   assert.ok(problems.some((p) => /tijdbudget bereikt/.test(p.error)));
-  assert.ok(Array.isArray(payload.products), 'er wordt nog steeds site-data geschreven');
+  assert.equal(payload.products.length, 1, 'het eerste product gaat altijd nog door');
+  assert.equal(published, true, 'wat gevonden is wordt gewoon gepubliceerd');
   await fs.access(paths.sitePrices);
 });
 
