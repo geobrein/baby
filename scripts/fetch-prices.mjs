@@ -17,9 +17,14 @@ try {
     process.exit(0);
   }
   const log = args.quiet ? () => {} : (...m) => console.log(...m);
-  const { payload, problems } = await run(args, { log });
+  const { payload, problems, published } = await run(args, { log });
   console.log(`\nKlaar: ${payload.stats.offers} prijzen voor ${payload.stats.productsWithOffers}/${payload.stats.products} producten, ${problems.length} zonder resultaat.`);
-  console.log(`Geschreven: site/data/prices.json (${payload.updatedAt})`);
+  if (published) {
+    console.log(`Geschreven: site/data/prices.json (${payload.updatedAt})`);
+  } else if (!args.dryRun) {
+    console.error('Geen enkele prijs gevonden - de site is niet bijgewerkt. Zie data/report.json.');
+    process.exitCode = 1;
+  }
 } catch (err) {
   console.error(`Fout: ${err.message}`);
   process.exitCode = 1;

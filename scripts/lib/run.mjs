@@ -14,12 +14,13 @@ export const DEFAULT_MAX_FAILURES = 6;
 export function parseArgs(argv) {
   const args = {
     mock: false, robots: true, only: null, product: null, limit: null, quiet: false, help: false,
-    budgetMinutes: DEFAULT_BUDGET_MINUTES, maxFailures: DEFAULT_MAX_FAILURES,
+    dryRun: false, budgetMinutes: DEFAULT_BUDGET_MINUTES, maxFailures: DEFAULT_MAX_FAILURES,
   };
   for (const arg of argv) {
     if (arg === '--mock') args.mock = true;
     else if (arg === '--no-robots') args.robots = false;
     else if (arg === '--quiet') args.quiet = true;
+    else if (arg === '--dry-run') args.dryRun = true;
     else if (arg === '--help' || arg === '-h') args.help = true;
     else if (arg.startsWith('--only=')) args.only = split(arg.slice(7));
     else if (arg.startsWith('--product=')) args.product = split(arg.slice(10));
@@ -47,6 +48,7 @@ export const HELP = `babyprijs - prijzen ophalen
   --limit=n           maximaal n producten
   --budget=minuten    stop met ophalen na zoveel minuten en bewaar wat er is (standaard 25)
   --max-failures=n    sla een winkel over na n mislukkingen op rij (standaard 6)
+  --dry-run           alleen kijken wat er gevonden wordt, niets wegschrijven
   --no-robots         robots.txt niet controleren (alleen voor eigen tests)
   --quiet             minder logregels`;
 
@@ -150,7 +152,19 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
 
   const payload = buildPayload({ catalog, shops, products, offersByProduct, verification, history, args, startedAt });
 
-  await writeJson(paths.sitePrices, payload);
+  if (args.dryRun) {
+    log('\n--dry-run: er is niets weggeschreven.');
+    return { payload, problems, published: false };
+  }
+
+  // Een mislukte ronde mag een werkende site niet leegmaken.
+  const published = payload.products.length > 0;
+  if (published) {
+    await writeJson(paths.sitePrices, payload);
+  } else {
+    log('\nGeen enkele prijs gevonden; site/data/prices.json blijft ongewijzigd.');
+  }
+
   // Demoprijzen mogen de echte cache en historie niet vervuilen.
   if (!args.mock) {
     await writeJson(paths.resolved, resolved);
@@ -159,6 +173,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
     await writeJson(paths.report, {
       ranAt: startedAt.toISOString(),
       mock: false,
+      published,
       durationSeconds: Math.round((Date.now() - startedAt.getTime()) / 1000),
       budgetMinutes: args.budgetMinutes,
       shops: activeShops.map(([id]) => id),
@@ -168,7 +183,7 @@ export async function run(args, { paths = defaultPaths, log = console.log, fetch
     });
   }
 
-  return { payload, problems };
+  return { payload, problems, published };
 }
 
 /**
