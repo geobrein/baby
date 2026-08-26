@@ -27,6 +27,14 @@ on:
         description: 'Product-id om de kandidaten tegen te toetsen'
         required: false
         default: ''
+      outbound:
+        description: 'Pagina waarvan de uitgaande links geteld moeten worden'
+        required: false
+        default: ''
+      sites:
+        description: 'Losse sites om te controleren (komma-gescheiden hostnamen)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -48,4 +56,6 @@ jobs:
           [ -n "${{ inputs.links }}" ] && args="$args --links=${{ inputs.links }} --match=${{ inputs.match }}"
           [ -n "${{ inputs.candidates }}" ] && args="$args --candidates=${{ inputs.candidates }}"
           [ -n "${{ inputs.product }}" ] && args="$args --product=${{ inputs.product }}"
+          [ -n "${{ inputs.outbound }}" ] && args="$args --outbound=${{ inputs.outbound }}"
+          [ -n "${{ inputs.sites }}" ] && args="$args --sites=${{ inputs.sites }}"
           node scripts/probe-shops.mjs $args | tee -a "$GITHUB_STEP_SUMMARY"

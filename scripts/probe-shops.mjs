@@ -22,6 +22,8 @@ const extraUrls = argv.filter((a) => a.startsWith('--url=')).map((a) => a.slice(
 const linkPage = argv.find((a) => a.startsWith('--links='))?.slice(8);
 const candidatesFor = argv.find((a) => a.startsWith('--candidates='))?.slice(13);
 const productId = argv.find((a) => a.startsWith('--product='))?.slice(10);
+const outbound = argv.find((a) => a.startsWith('--outbound='))?.slice(11);
+const extraSites = argv.find((a) => a.startsWith('--sites='))?.slice(8).split(',').filter(Boolean);
 const linkMatch = argv.find((a) => a.startsWith('--match='))?.slice(8) ?? 'luier';
 
 const shops = await readJson(paths.shops);
@@ -39,6 +41,47 @@ const SAMPLE_PRODUCT_PATHS = {
 };
 
 console.log(`user-agent: ${DEFAULT_USER_AGENT}\n`);
+
+// Losse sites doorlichten zonder ze in shops.json te hoeven zetten.
+for (const site of extraSites ?? []) {
+  const base = site.startsWith('http') ? site : `https://${site}`;
+  console.log(`## ${new URL(base).host}`);
+  const robotsRes = await fetcher.text(`${new URL(base).origin}/robots.txt`);
+  console.log(`   robots.txt: ${robotsRes.ok ? `${robotsRes.body.split(/\r?\n/).length} regels` : robotsRes.error}`);
+  const home = await fetcher.text(base);
+  console.log(`   homepage: ${home.ok ? `HTTP ${home.status}, ${home.body.length} tekens` : home.error}\n`);
+}
+
+// Waar linkt een bestaande vergelijker naartoe? Dat verraadt de gebruikte route.
+if (outbound) {
+  console.log(`## uitgaande links op ${outbound}`);
+  const res = await fetcher.text(outbound);
+  if (!res.ok) {
+    console.log(`   ${res.error}\n`);
+  } else {
+    const own = new URL(res.url).host.replace(/^www\./, '');
+    const hosts = new Map();
+    const samples = new Map();
+    for (const href of extractLinks(res.body)) {
+      let url;
+      try {
+        url = new URL(href, res.url);
+      } catch {
+        continue;
+      }
+      const host = url.host.replace(/^www\./, '');
+      if (host === own) continue;
+      hosts.set(host, (hosts.get(host) ?? 0) + 1);
+      if (!samples.has(host)) samples.set(host, url.href);
+    }
+    console.log(`   ${res.body.length} tekens, ${hosts.size} externe hosts`);
+    for (const [host, count] of [...hosts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 25)) {
+      console.log(`   ${String(count).padStart(4)}x ${host}`);
+      console.log(`        ${samples.get(host).slice(0, 160)}`);
+    }
+    console.log('');
+  }
+}
 
 for (const [id, shop] of Object.entries(shops)) {
   if (only && !only.includes(id)) continue;
