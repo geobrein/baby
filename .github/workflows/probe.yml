@@ -1,0 +1,32 @@
+name: Winkels onderzoeken
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Alleen deze winkels (komma-gescheiden, leeg = alle)'
+        required: false
+        default: ''
+      url:
+        description: 'Extra productpagina om te controleren (volledige URL)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Winkels onderzoeken
+        run: |
+          args=""
+          [ -n "${{ inputs.only }}" ] && args="$args --only=${{ inputs.only }}"
+          [ -n "${{ inputs.url }}" ] && args="$args --url=${{ inputs.url }}"
+          node scripts/probe-shops.mjs $args | tee -a "$GITHUB_STEP_SUMMARY"

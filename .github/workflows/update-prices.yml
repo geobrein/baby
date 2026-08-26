@@ -50,7 +50,7 @@ jobs:
           node scripts/fetch-prices.mjs $args
 
       - name: Samenvatting
-        if: always()
+        if: always() && inputs.dry_run != true
         run: node scripts/summary.mjs
 
       - name: Wijzigingen vastleggen
