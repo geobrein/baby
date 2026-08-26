@@ -10,12 +10,15 @@
 import { Fetcher, DEFAULT_USER_AGENT } from './lib/http.mjs';
 import { isAllowed, crawlDelay } from './lib/robots.mjs';
 import { extractProduct } from './lib/parse.mjs';
+import { extractLinks, stripTags } from './lib/html.mjs';
 import { paths } from './lib/paths.mjs';
 import { readJson } from './lib/store.mjs';
 
 const argv = process.argv.slice(2);
 const only = argv.find((a) => a.startsWith('--only='))?.slice(7).split(',');
 const extraUrls = argv.filter((a) => a.startsWith('--url=')).map((a) => a.slice(6));
+const linkPage = argv.find((a) => a.startsWith('--links='))?.slice(8);
+const linkMatch = argv.find((a) => a.startsWith('--match='))?.slice(8) ?? 'luier';
 
 const shops = await readJson(paths.shops);
 const fetcher = new Fetcher({ respectRobots: false, defaultDelayMs: 1000, maxRetries: 0, timeoutMs: 15000, log: () => {} });
@@ -53,6 +56,33 @@ for (const [id, shop] of Object.entries(shops)) {
   const home = await fetcher.text(shop.site);
   console.log(`   homepage: ${home.ok ? `HTTP ${home.status}, ${home.body.length} tekens` : home.error}`);
   console.log('');
+}
+
+if (linkPage) {
+  // Zoeken mag vaak niet, bladeren wel: welke categoriepagina's biedt de winkel aan?
+  console.log(`## links op ${linkPage} die "${linkMatch}" bevatten`);
+  const res = await fetcher.text(linkPage);
+  if (!res.ok) {
+    console.log(`   ${res.error}\n`);
+  } else {
+    const robots = await fetcher.text(`${new URL(linkPage).origin}/robots.txt`);
+    const needle = linkMatch.toLowerCase();
+    const links = [...new Set(extractLinks(res.body)
+      .map((href) => {
+        try {
+          return new URL(href, res.url).href;
+        } catch {
+          return null;
+        }
+      })
+      .filter((href) => href && href.toLowerCase().includes(needle)))];
+    for (const href of links.slice(0, 40)) {
+      const path = new URL(href).pathname + new URL(href).search;
+      const allowed = robots.ok ? isAllowed(robots.body, path, DEFAULT_USER_AGENT) : true;
+      console.log(`   ${allowed ? 'toegestaan' : 'VERBODEN  '} ${href}`);
+    }
+    console.log(`   (${links.length} gevonden, ${res.body.length} tekens op de pagina)\n`);
+  }
 }
 
 for (const url of extraUrls) {

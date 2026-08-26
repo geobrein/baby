@@ -11,6 +11,14 @@ on:
         description: 'Extra productpagina om te controleren (volledige URL)'
         required: false
         default: ''
+      links:
+        description: 'Pagina waarvan de links getoond moeten worden (bijv. een homepage)'
+        required: false
+        default: ''
+      match:
+        description: 'Toon alleen links die dit woord bevatten (standaard: luier)'
+        required: false
+        default: 'luier'
 
 permissions:
   contents: read
@@ -29,4 +37,5 @@ jobs:
           args=""
           [ -n "${{ inputs.only }}" ] && args="$args --only=${{ inputs.only }}"
           [ -n "${{ inputs.url }}" ] && args="$args --url=${{ inputs.url }}"
+          [ -n "${{ inputs.links }}" ] && args="$args --links=${{ inputs.links }} --match=${{ inputs.match }}"
           node scripts/probe-shops.mjs $args | tee -a "$GITHUB_STEP_SUMMARY"
